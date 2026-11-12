@@ -768,7 +768,7 @@
             Automated Playwright end-to-end multi-user test execution dashboard covering participant/guest role allotment, survey viewpoint classification, dynamic meeting progression, and critical question validation.
           </p>
         </div>
-        <button class="btn btn-rerun-header" onclick="openRerunModal('scenario-6', 'Scenario 6: Mixed Viewpoint (12 Users)')">
+        <button class="btn btn-rerun-header" onclick="openRerunModal('admin', 'Admin Portal Workflow')">
           <span>⚡</span> Re-Run Test Suite
         </button>
       </div>
@@ -779,18 +779,18 @@
     <!-- OVERVIEW STATS -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-label">Total Scenarios Tested</div>
+        <div class="stat-label">Total Workflows Tested</div>
         <div class="stat-value">5</div>
-        <div class="stat-desc">Scenarios 2, 3, 4, 5 & 6</div>
+        <div class="stat-desc">Admin Portal, Scenarios 2, 3, 4 & 5</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Overall Test Status</div>
         <div class="stat-value" style="color: #34d399;">100% PASS</div>
-        <div class="stat-desc">All critical validations verified</div>
+        <div class="stat-desc">All verified workflows passing</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Simulated Browser Sessions</div>
-        <div class="stat-value">48</div>
+        <div class="stat-value">37</div>
         <div class="stat-desc">Parallel authenticated user sessions</div>
       </div>
       <div class="stat-card">
@@ -807,34 +807,34 @@
 
     <div class="scenario-grid">
 
-      <!-- SCENARIO 6 -->
+      <!-- ADMIN PORTAL WORKFLOW -->
       <div class="scenario-card">
         <div class="card-top">
           <div class="card-tags">
             <span class="tag tag-passed">PASSED</span>
-            <span class="tag tag-users">12 Users (4P + 8G)</span>
-            <span class="tag tag-viewpoint">2 Support + 2 Oppose</span>
-            <span class="tag tag-rounds">3 Rounds (8+7+6)</span>
+            <span class="tag tag-users">Admin Portal</span>
+            <span class="tag tag-viewpoint">AI Prompts & Config</span>
+            <span class="tag tag-rounds">3 & 5 Rounds Config</span>
           </div>
-          <div class="scenario-number">Scenario 6</div>
-          <h3 class="scenario-title">Mixed Viewpoint (Balanced Question Delivery)</h3>
+          <div class="scenario-number">Admin Workflow</div>
+          <h3 class="scenario-title">Admin Portal End-to-End Configuration & AI Question Curation</h3>
           <p class="scenario-desc">
-            12 Users (4 Participants + 8 Guest Viewers). 2 participants submit Support answers and 2 submit Oppose answers. Critical validation ensures the engine delivers a balanced mix of both Pros AND Oppose questions.
+            Complete automated validation of the Converze.AI Admin Portal. Tests secure admin login, target article category navigation, AI prompt generation for Pros (30), Oppose (30) and Survey (10) questions, round distribution setup, and full database persistence verification.
           </p>
           <div class="scenario-article">
-            <div class="scenario-article-label">Target Article</div>
-            <div class="scenario-article-title">The US$6.3 billion Binance hack is the biggest heist ever – it should be a wake up call for cryptocurrency users</div>
+            <div class="scenario-article-label">Target Portal</div>
+            <div class="scenario-article-title">https://admin.thedevdemo.in/ — Dashboard & Article AI Configuration</div>
           </div>
           <ul class="key-points">
-            <li>Critical Validation: Delivered 11 Pros + 10 Oppose questions</li>
-            <li>Guest Count Badge: 8 → 7 (leave) → 8 (rejoin) dynamically verified</li>
-            <li>All 12 user video sessions recorded (~900 MB total)</li>
+            <li>Admin authentication & JWT session persistence verified</li>
+            <li>Generated & saved 30 Pros + 30 Oppose + 10 Survey questions</li>
+            <li>Round distribution configuration and database persistence audited</li>
           </ul>
         </div>
         <div class="card-actions">
-          <a class="btn btn-primary" href="scenario-6-report/all-in-one-report.html">View Scenario 6 Report →</a>
-          <a class="btn btn-secondary" href="scenario-6-report/scenario-6-execution-summary.json">Download JSON</a>
-          <button class="btn btn-rerun" onclick="openRerunModal('scenario-6', 'Scenario 6: Mixed Viewpoint (12 Users)')">⚡ Re-Run Test</button>
+          <a class="btn btn-primary" href="admin-test-report/all-in-one-report.html">View Admin Report →</a>
+          <a class="btn btn-secondary" href="admin-test-report/index.html">View Playwright Trace</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('admin', 'Admin Portal Workflow')">⚡ Re-Run Test</button>
         </div>
       </div>
 
@@ -984,7 +984,7 @@
         <div class="form-group">
           <label class="form-label">Select Target Scenario:</label>
           <select id="scenarioSelect" class="form-select" onchange="onScenarioChange(this.value)">
-            <option value="scenario-6">Scenario 6: Mixed Viewpoint (12 Users, Balanced Pros+Oppose)</option>
+            <option value="admin">Admin Portal Workflow (AI Prompts & Round Distribution)</option>
             <option value="scenario-5">Scenario 5: 100% Support Viewpoint (12 Users, Only Pros)</option>
             <option value="scenario-4">Scenario 4: 100% Oppose Viewpoint (8 Users, Only Oppose)</option>
             <option value="scenario-3">Scenario 3: Survey Skip & Role Allocation (8 Users)</option>
@@ -1071,13 +1071,13 @@
   </footer>
 
   <script>
-    let activeScenario = 'scenario-6';
+    let activeScenario = 'admin';
     let pollInterval = null;
 
     const SCENARIOS = {
-      'scenario-6': {
-        title: 'Scenario 6: Mixed Viewpoint (12 Users)',
-        cli: 'npm run test:scenario-6 && npm run report:scenario-6-html'
+      'admin': {
+        title: 'Admin Portal Workflow (AI Prompts & Configuration)',
+        cli: 'npm run test:admin && npm run report:admin-html'
       },
       'scenario-5': {
         title: 'Scenario 5: 100% Support Viewpoint (12 Users)',
@@ -1098,7 +1098,7 @@
     };
 
     function openRerunModal(scenario, title) {
-      activeScenario = scenario || 'scenario-6';
+      activeScenario = scenario || 'admin';
       document.getElementById('scenarioSelect').value = activeScenario;
       onScenarioChange(activeScenario);
       document.getElementById('rerunModal').classList.add('active');
@@ -1124,7 +1124,7 @@
 
     function onScenarioChange(scenario) {
       activeScenario = scenario;
-      const data = SCENARIOS[scenario] || SCENARIOS['scenario-6'];
+      const data = SCENARIOS[scenario] || SCENARIOS['admin'];
       document.getElementById('modalScenarioSubtitle').textContent = data.title;
       document.getElementById('cliCommandText').textContent = data.cli;
       document.getElementById('ghActionBtn').href = 'https://github.com/vigneshganesh163-lgtm/converze.ai-Playwright-test-/actions/workflows/run-tests.yml';

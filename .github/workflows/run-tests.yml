@@ -6,9 +6,10 @@ on:
       scenario:
         description: 'Select Scenario to Re-Run'
         required: true
-        default: 'scenario-6'
+        default: 'admin'
         type: choice
         options:
+          - 'admin'
           - 'scenario-2'
           - 'scenario-3'
           - 'scenario-4'

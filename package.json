@@ -5,11 +5,13 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "test:admin": "playwright test --config=playwright.admin.config.ts",
     "test:scenario-2": "playwright test --config=playwright.public-portal.config.ts",
     "test:scenario-3": "playwright test --config=playwright.scenario-3.config.ts",
     "test:scenario-4": "playwright test --config=playwright.scenario-4.config.ts",
     "test:scenario-5": "playwright test --config=playwright.scenario-5.config.ts",
     "test:scenario-6": "playwright test --config=playwright.scenario-6.config.ts",
+    "report:admin-html": "node generate-admin-html-report.js",
     "report:scenario-2-html": "node generate-public-portal-html-report.js",
     "report:scenario-3-html": "node generate-scenario-3-html-report.js",
     "report:scenario-4-html": "node generate-scenario-4-html-report.js",
