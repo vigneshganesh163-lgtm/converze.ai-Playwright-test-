@@ -12,11 +12,6 @@ node_modules/
 *-test-results/
 Scenario 2/
 
-# Video files (Combined videos total ~3GB. GitHub limits single pushes to 2GB and repos to 1GB)
-# If you want to push videos to GitHub, consider using Git LFS (Large File Storage)
-**/videos/*.webm
-**/videos/*.mp4
-
 # OS generated files
 .DS_Store
 Thumbs.db
