@@ -1,0 +1,70 @@
+name: Playwright Test On-Demand Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: 'Select Scenario to Re-Run'
+        required: true
+        default: 'scenario-6'
+        type: choice
+        options:
+          - 'scenario-2'
+          - 'scenario-3'
+          - 'scenario-4'
+          - 'scenario-5'
+          - 'scenario-6'
+  repository_dispatch:
+    types: [rerun-test]
+
+permissions:
+  contents: write
+
+jobs:
+  run-playwright-scenario:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci || npm install
+
+      - name: Install Playwright Chromium with System Dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Determine Target Scenario
+        id: target
+        run: |
+          SCENARIO="${{ github.event.inputs.scenario || github.event.client_payload.scenario || 'scenario-6' }}"
+          echo "selected_scenario=$SCENARIO" >> $GITHUB_OUTPUT
+          echo "Selected Scenario to run: $SCENARIO"
+
+      - name: Execute Playwright Test
+        run: |
+          SCENARIO="${{ steps.target.outputs.selected_scenario }}"
+          echo "==> Running Playwright Test for $SCENARIO..."
+          npm run "test:$SCENARIO"
+
+      - name: Re-generate HTML All-in-One Report
+        if: always()
+        run: |
+          SCENARIO="${{ steps.target.outputs.selected_scenario }}"
+          echo "==> Re-generating HTML report for $SCENARIO..."
+          npm run "report:$SCENARIO-html" || true
+
+      - name: Commit & Push Updated Test Results
+        if: always()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(report): Update automated test results for ${{ steps.target.outputs.selected_scenario }} [skip ci]" && git push origin main)

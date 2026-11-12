@@ -1,10 +1,20 @@
 {
   "name": "converze-ai-test-reports-portal",
   "version": "1.0.0",
-  "description": "Converze.AI Automated Playwright Test Suite Results Portal",
+  "description": "Converze.AI Automated Playwright Test Suite Results & Live Runner Portal",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test:scenario-2": "playwright test --config=playwright.public-portal.config.ts",
+    "test:scenario-3": "playwright test --config=playwright.scenario-3.config.ts",
+    "test:scenario-4": "playwright test --config=playwright.scenario-4.config.ts",
+    "test:scenario-5": "playwright test --config=playwright.scenario-5.config.ts",
+    "test:scenario-6": "playwright test --config=playwright.scenario-6.config.ts",
+    "report:scenario-2-html": "node generate-public-portal-html-report.js",
+    "report:scenario-3-html": "node generate-scenario-3-html-report.js",
+    "report:scenario-4-html": "node generate-scenario-4-html-report.js",
+    "report:scenario-5-html": "node generate-scenario-5-html-report.js",
+    "report:scenario-6-html": "node generate-scenario-6-html-report.js"
   },
   "keywords": [
     "playwright",
@@ -12,5 +22,8 @@
     "converze-ai"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
 }

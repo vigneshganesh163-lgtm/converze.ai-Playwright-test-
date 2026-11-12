@@ -23,6 +23,7 @@
       --primary: #3b82f6;
       --purple: #8b5cf6;
       --danger: #ef4444;
+      --orange: #f97316;
     }
 
     * {
@@ -68,6 +69,14 @@
       z-index: 1;
     }
 
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
     .badge-live {
       display: inline-flex;
       align-items: center;
@@ -75,8 +84,8 @@
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid rgba(16, 185, 129, 0.3);
       color: #34d399;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.75rem;
+      font-weight: 700;
       padding: 0.35rem 0.85rem;
       border-radius: 9999px;
       text-transform: uppercase;
@@ -153,31 +162,32 @@
       font-size: 2rem;
       font-weight: 800;
       color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
     }
 
     .stat-desc {
-      font-size: 0.8rem;
-      color: #64748b;
-      margin-top: 0.25rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
     }
 
-    /* SECTION TITLE */
+    /* SECTION HEADER */
     .section-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
       margin-bottom: 1.75rem;
+      padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--card-border);
-      padding-bottom: 1rem;
     }
 
     .section-title {
       font-size: 1.4rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
+      color: #fff;
     }
 
-    /* SCENARIO GRID */
+    /* SCENARIO CARDS GRID */
     .scenario-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -188,124 +198,145 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 1.75rem;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-      position: relative;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease-in-out;
     }
 
     .scenario-card:hover {
-      transform: translateY(-4px);
-      border-color: #374151;
-      box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.4);
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 20px -3px rgba(0, 0, 0, 0.4);
     }
 
     .card-top {
-      margin-bottom: 1.25rem;
+      padding: 1.75rem 1.75rem 1.25rem;
     }
 
     .card-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
 
     .tag {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 600;
       padding: 0.25rem 0.65rem;
       border-radius: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.025em;
     }
 
-    .tag-passed { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-    .tag-users { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; }
-    .tag-rounds { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-    .tag-viewpoint { background: rgba(139, 92, 246, 0.15); color: #c4b5fd; }
+    .tag-passed {
+      background: var(--success-bg);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .tag-users {
+      background: rgba(99, 102, 241, 0.12);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .tag-viewpoint {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .tag-rounds {
+      background: rgba(139, 92, 246, 0.12);
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
 
     .scenario-number {
-      font-size: 0.9rem;
-      font-weight: 700;
       color: var(--accent);
-      margin-bottom: 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
     }
 
     .scenario-title {
       font-size: 1.25rem;
       font-weight: 700;
-      line-height: 1.35;
-      margin-bottom: 0.75rem;
       color: #fff;
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
     }
 
     .scenario-desc {
       color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
+      font-size: 0.925rem;
+      line-height: 1.55;
       margin-bottom: 1.25rem;
     }
 
     .scenario-article {
-      background: #0b0f19;
-      border: 1px solid #1e293b;
-      border-radius: 8px;
-      padding: 0.85rem 1rem;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1.25rem;
     }
 
     .scenario-article-label {
       font-size: 0.7rem;
-      color: #64748b;
-      font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 0.25rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
 
     .scenario-article-title {
+      font-size: 0.85rem;
+      font-weight: 500;
       color: #e2e8f0;
-      font-weight: 600;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin-top: 0.2rem;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .key-points {
       list-style: none;
-      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
       font-size: 0.85rem;
+      color: #cbd5e1;
     }
 
     .key-points li {
       display: flex;
       align-items: flex-start;
       gap: 0.5rem;
-      color: #cbd5e1;
-      margin-bottom: 0.5rem;
     }
 
     .key-points li::before {
       content: '✓';
       color: var(--success);
       font-weight: 800;
+      flex-shrink: 0;
     }
 
     /* CARD ACTIONS */
     .card-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-top: auto;
+      padding: 1.25rem 1.75rem;
+      background: rgba(0, 0, 0, 0.2);
       border-top: 1px solid var(--card-border);
-      padding-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
     }
 
     .btn {
@@ -313,19 +344,19 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.75rem 1.25rem;
-      border-radius: 10px;
-      font-size: 0.9rem;
+      padding: 0.65rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
       cursor: pointer;
+      border: none;
     }
 
     .btn-primary {
       background: var(--accent);
       color: #fff;
-      border: 1px solid transparent;
     }
 
     .btn-primary:hover {
@@ -336,12 +367,373 @@
     .btn-secondary {
       background: rgba(255, 255, 255, 0.05);
       color: #cbd5e1;
-      border: 1px solid #334155;
+      border: 1px solid var(--card-border);
     }
 
     .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.09);
       color: #fff;
+    }
+
+    .btn-rerun {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%);
+      color: #fb923c;
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      font-weight: 700;
+      margin-left: auto;
+    }
+
+    .btn-rerun:hover {
+      background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-rerun-header {
+      background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+      color: #fff;
+      padding: 0.85rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-rerun-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
+    }
+
+    /* MODAL DIALOG */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      max-width: 680px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      animation: modalSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlide {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .modal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .modal-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: #fff;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .modal-subtitle {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.75rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem;
+      transition: color 0.15s;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .modal-body {
+      padding: 1.75rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-select, .form-input {
+      width: 100%;
+      background: #090d16;
+      border: 1px solid #374151;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      color: #f3f4f6;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-select:focus, .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+    }
+
+    /* MODAL TABS */
+    .modal-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid #1f2937;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.25rem;
+    }
+
+    .modal-tab {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .modal-tab:hover {
+      color: #f3f4f6;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .modal-tab.active {
+      color: #fff;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    .runner-box {
+      background: #0a0f1d;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .runner-box h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+
+    .runner-box p {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .btn-github {
+      background: #238636;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      padding: 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 10px;
+    }
+
+    .btn-github:hover {
+      background: #2ea043;
+      box-shadow: 0 4px 15px rgba(46, 160, 67, 0.35);
+    }
+
+    .runner-hint {
+      font-size: 0.825rem;
+      color: #64748b;
+      line-height: 1.45;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .code-block-wrapper {
+      position: relative;
+      background: #040711;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .code-block-wrapper pre {
+      margin: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .btn-copy {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    /* TERMINAL LOGS WINDOW */
+    .terminal-window {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      margin-top: 1rem;
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      background: #0f172a;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot.red { background: #ef4444; }
+    .dot.yellow { background: #f59e0b; }
+    .dot.green { background: #10b981; }
+
+    .terminal-title {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      margin-left: 0.5rem;
+    }
+
+    .terminal-body {
+      padding: 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.785rem;
+      line-height: 1.45;
+      max-height: 180px;
+      overflow-y: auto;
+      color: #94a3b8;
+    }
+
+    .log-line {
+      margin-bottom: 0.25rem;
+      word-break: break-all;
+    }
+
+    .status-indicator-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 0.75rem 0;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3b82f6;
+      animation: pulse 1.5s infinite;
     }
 
     /* FOOTER */
@@ -368,11 +760,18 @@
 
   <header>
     <div class="header-content">
-      <div class="badge-live">Live Automated Test Suite</div>
-      <h1>Converze.AI Public Portal Results</h1>
-      <p class="subtitle">
-        Automated Playwright end-to-end multi-user test execution dashboard covering participant/guest role allotment, survey viewpoint classification, dynamic meeting progression, and critical question validation.
-      </p>
+      <div class="header-flex">
+        <div>
+          <div class="badge-live">Live Automated Test Suite</div>
+          <h1>Converze.AI Public Portal Results</h1>
+          <p class="subtitle">
+            Automated Playwright end-to-end multi-user test execution dashboard covering participant/guest role allotment, survey viewpoint classification, dynamic meeting progression, and critical question validation.
+          </p>
+        </div>
+        <button class="btn btn-rerun-header" onclick="openRerunModal('scenario-6', 'Scenario 6: Mixed Viewpoint (12 Users)')">
+          <span>⚡</span> Re-Run Test Suite
+        </button>
+      </div>
     </div>
   </header>
 
@@ -434,7 +833,8 @@
         </div>
         <div class="card-actions">
           <a class="btn btn-primary" href="scenario-6-report/all-in-one-report.html">View Scenario 6 Report →</a>
-          <a class="btn btn-secondary" href="scenario-6-report/scenario-6-execution-summary.json">Download Execution JSON</a>
+          <a class="btn btn-secondary" href="scenario-6-report/scenario-6-execution-summary.json">Download JSON</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-6', 'Scenario 6: Mixed Viewpoint (12 Users)')">⚡ Re-Run Test</button>
         </div>
       </div>
 
@@ -464,7 +864,8 @@
         </div>
         <div class="card-actions">
           <a class="btn btn-primary" href="scenario-5-report/all-in-one-report.html">View Scenario 5 Report →</a>
-          <a class="btn btn-secondary" href="scenario-5-report/scenario-5-execution-summary.json">Download Execution JSON</a>
+          <a class="btn btn-secondary" href="scenario-5-report/scenario-5-execution-summary.json">Download JSON</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-5', 'Scenario 5: 100% Support (12 Users)')">⚡ Re-Run Test</button>
         </div>
       </div>
 
@@ -494,7 +895,8 @@
         </div>
         <div class="card-actions">
           <a class="btn btn-primary" href="scenario-4-report/all-in-one-report.html">View Scenario 4 Report →</a>
-          <a class="btn btn-secondary" href="scenario-4-report/Scenario 4 with Survey (oppose)  - 4 + 4participants.html">View Standalone Report</a>
+          <a class="btn btn-secondary" href="scenario-4-report/Scenario 4 with Survey (oppose)  - 4 + 4participants.html">View Standalone</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-4', 'Scenario 4: 100% Oppose (8 Users)')">⚡ Re-Run Test</button>
         </div>
       </div>
 
@@ -524,7 +926,8 @@
         </div>
         <div class="card-actions">
           <a class="btn btn-primary" href="scenario-3-report/all-in-one-report.html">View Scenario 3 Report →</a>
-          <a class="btn btn-secondary" href="scenario-3-report/Scenario 3 with skip survey  - 4 + 4participants.html">View Standalone Report</a>
+          <a class="btn btn-secondary" href="scenario-3-report/Scenario 3 with skip survey  - 4 + 4participants.html">View Standalone</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-3', 'Scenario 3: Survey Skip & Role Allotment (8 Users)')">⚡ Re-Run Test</button>
         </div>
       </div>
 
@@ -554,16 +957,263 @@
         </div>
         <div class="card-actions">
           <a class="btn btn-primary" href="Scenario 2 report/index.html">View Scenario 2 Report →</a>
-          <a class="btn btn-secondary" href="Scenario 2 report/Scenario 2 with survey agree  - 4 participants.html">View Standalone Report</a>
+          <a class="btn btn-secondary" href="Scenario 2 report/Scenario 2 with survey agree  - 4 participants.html">View Standalone</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-2', 'Scenario 2: Core Meeting (4 Users)')">⚡ Re-Run Test</button>
         </div>
       </div>
 
     </div>
   </main>
 
+  <!-- RE-RUN TEST MODAL -->
+  <div id="rerunModal" class="modal-overlay" onclick="handleModalBackdropClick(event)">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-icon">⚡</div>
+          <div>
+            <h3 class="modal-title">Re-Run Playwright Test</h3>
+            <p class="modal-subtitle" id="modalScenarioSubtitle">Scenario 6: Mixed Viewpoint (12 Users)</p>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeRerunModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Scenario Selector -->
+        <div class="form-group">
+          <label class="form-label">Select Target Scenario:</label>
+          <select id="scenarioSelect" class="form-select" onchange="onScenarioChange(this.value)">
+            <option value="scenario-6">Scenario 6: Mixed Viewpoint (12 Users, Balanced Pros+Oppose)</option>
+            <option value="scenario-5">Scenario 5: 100% Support Viewpoint (12 Users, Only Pros)</option>
+            <option value="scenario-4">Scenario 4: 100% Oppose Viewpoint (8 Users, Only Oppose)</option>
+            <option value="scenario-3">Scenario 3: Survey Skip & Role Allocation (8 Users)</option>
+            <option value="scenario-2">Scenario 2: Core Meeting & Agree Survey (4 Users)</option>
+          </select>
+        </div>
+
+        <!-- Mode Tabs -->
+        <div class="modal-tabs">
+          <button class="modal-tab active" id="tabBtnCloud" onclick="switchTab('cloud')">☁️ Cloud Runner (GitHub Actions)</button>
+          <button class="modal-tab" id="tabBtnLive" onclick="switchTab('live')">⚡ Direct Webhook / API</button>
+          <button class="modal-tab" id="tabBtnCli" onclick="switchTab('cli')">💻 Local CLI Command</button>
+        </div>
+
+        <!-- TAB 1: Cloud Runner (GitHub Actions) -->
+        <div id="tab-cloud" class="tab-pane active">
+          <div class="runner-box">
+            <h4>Recommended: Cloud Execution on GitHub Actions</h4>
+            <p>
+              Runs the full test suite in the cloud on GitHub's 16-GB Ubuntu runner with parallel headless Chromium instances. When completed, test reports, videos, and metrics are committed back and Render automatically updates the live portal.
+            </p>
+            <div style="margin: 1.25rem 0;">
+              <a id="ghActionBtn" class="btn btn-github" target="_blank" href="https://github.com/vigneshganesh163-lgtm/converze.ai-Playwright-test-/actions/workflows/run-tests.yml">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>Launch Workflow in GitHub Actions →</span>
+              </a>
+            </div>
+            <div class="runner-hint">
+              💡 <em>Click the button above → Click <strong>"Run workflow"</strong> on GitHub → Select Scenario → Click <strong>"Run workflow"</strong>.</em>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: Direct Webhook / API -->
+        <div id="tab-live" class="tab-pane">
+          <div class="runner-box">
+            <h4>Trigger Test via Dashboard API</h4>
+            <p>
+              Trigger on-demand execution directly from this portal. Enter an optional GitHub Token to dispatch cloud execution, or run directly if connected to a local runner daemon.
+            </p>
+            <div class="input-row">
+              <input type="password" id="ghTokenInput" class="form-input" placeholder="Optional GitHub Token (PAT) for 1-click cloud dispatch" />
+              <button class="btn btn-primary" onclick="triggerApiRun()">⚡ Trigger Now</button>
+            </div>
+            <div class="status-indicator-bar" id="statusBar" style="display: none;">
+              <div class="status-dot"></div>
+              <span id="statusText">Executing test...</span>
+            </div>
+            <div class="terminal-window">
+              <div class="terminal-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-title">Runner Console Output</span>
+              </div>
+              <div class="terminal-body" id="terminalLogs">
+                <div class="log-line text-muted">Ready to execute. Click "Trigger Now" or choose Cloud Runner.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: Local CLI Command -->
+        <div id="tab-cli" class="tab-pane">
+          <div class="runner-box">
+            <h4>Run Locally in Terminal</h4>
+            <p>To execute locally with live browser windows or screencast capture, run this command:</p>
+            <div class="code-block-wrapper">
+              <pre><code id="cliCommandText">npm run test:scenario-6 && npm run report:scenario-6-html</code></pre>
+              <button class="btn-copy" id="copyBtn" onclick="copyCliCommand()">📋 Copy</button>
+            </div>
+            <div class="runner-hint" style="margin-top: 0.75rem;">
+              Make sure dependencies and browsers are installed: <code>npm install && npx playwright install</code>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>Converze.AI Automated Quality Assurance & Testing Suite — Built with Playwright & TypeScript</p>
   </footer>
+
+  <script>
+    let activeScenario = 'scenario-6';
+    let pollInterval = null;
+
+    const SCENARIOS = {
+      'scenario-6': {
+        title: 'Scenario 6: Mixed Viewpoint (12 Users)',
+        cli: 'npm run test:scenario-6 && npm run report:scenario-6-html'
+      },
+      'scenario-5': {
+        title: 'Scenario 5: 100% Support Viewpoint (12 Users)',
+        cli: 'npm run test:scenario-5 && npm run report:scenario-5-html'
+      },
+      'scenario-4': {
+        title: 'Scenario 4: 100% Oppose Viewpoint (8 Users)',
+        cli: 'npm run test:scenario-4 && npm run report:scenario-4-html'
+      },
+      'scenario-3': {
+        title: 'Scenario 3: Survey Skip & Role Allocation (8 Users)',
+        cli: 'npm run test:scenario-3 && npm run report:scenario-3-html'
+      },
+      'scenario-2': {
+        title: 'Scenario 2: Core Meeting & Agree Survey (4 Users)',
+        cli: 'npm run test:scenario-2 && npm run report:scenario-2-html'
+      }
+    };
+
+    function openRerunModal(scenario, title) {
+      activeScenario = scenario || 'scenario-6';
+      document.getElementById('scenarioSelect').value = activeScenario;
+      onScenarioChange(activeScenario);
+      document.getElementById('rerunModal').classList.add('active');
+    }
+
+    function closeRerunModal() {
+      document.getElementById('rerunModal').classList.remove('active');
+      if (pollInterval) {
+        clearInterval(pollInterval);
+        pollInterval = null;
+      }
+    }
+
+    function handleModalBackdropClick(e) {
+      if (e.target.id === 'rerunModal') {
+        closeRerunModal();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeRerunModal();
+    });
+
+    function onScenarioChange(scenario) {
+      activeScenario = scenario;
+      const data = SCENARIOS[scenario] || SCENARIOS['scenario-6'];
+      document.getElementById('modalScenarioSubtitle').textContent = data.title;
+      document.getElementById('cliCommandText').textContent = data.cli;
+      document.getElementById('ghActionBtn').href = 'https://github.com/vigneshganesh163-lgtm/converze.ai-Playwright-test-/actions/workflows/run-tests.yml';
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+      if (tabId === 'cloud') {
+        document.getElementById('tabBtnCloud').classList.add('active');
+        document.getElementById('tab-cloud').classList.add('active');
+      } else if (tabId === 'live') {
+        document.getElementById('tabBtnLive').classList.add('active');
+        document.getElementById('tab-live').classList.add('active');
+      } else if (tabId === 'cli') {
+        document.getElementById('tabBtnCli').classList.add('active');
+        document.getElementById('tab-cli').classList.add('active');
+      }
+    }
+
+    function copyCliCommand() {
+      const text = document.getElementById('cliCommandText').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => btn.textContent = '📋 Copy', 2000);
+      });
+    }
+
+    async function triggerApiRun() {
+      const token = document.getElementById('ghTokenInput').value.trim();
+      const statusBar = document.getElementById('statusBar');
+      const statusText = document.getElementById('statusText');
+      const terminalLogs = document.getElementById('terminalLogs');
+
+      statusBar.style.display = 'flex';
+      statusText.textContent = `Triggering test runner for ${activeScenario}...`;
+
+      terminalLogs.innerHTML += `<div class="log-line" style="color: #60a5fa;">[${new Date().toLocaleTimeString()}] ▶ Triggering execution for ${activeScenario}...</div>`;
+
+      try {
+        const res = await fetch('/api/run-test', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scenario: activeScenario, token })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          statusText.textContent = `Test initiated: ${data.message}`;
+          terminalLogs.innerHTML += `<div class="log-line" style="color: #34d399;">✓ ${data.message}</div>`;
+          if (data.actionsUrl) {
+            terminalLogs.innerHTML += `<div class="log-line"><a href="${data.actionsUrl}" target="_blank" style="color:#a5b4fc; text-decoration: underline;">View Live GitHub Action Run →</a></div>`;
+          }
+          startLogPolling();
+        } else {
+          statusText.textContent = `Error: ${data.error || 'Trigger failed'}`;
+          terminalLogs.innerHTML += `<div class="log-line" style="color: #ef4444;">✗ Error: ${data.error || 'Failed to start'}</div>`;
+        }
+      } catch (err) {
+        statusText.textContent = `Connected via GitHub Actions Cloud`;
+        terminalLogs.innerHTML += `<div class="log-line" style="color: #fb923c;">[Notice] For cloud-hosted static deployments, please use the "Cloud Runner (GitHub Actions)" tab to execute.</div>`;
+      }
+    }
+
+    function startLogPolling() {
+      if (pollInterval) clearInterval(pollInterval);
+      pollInterval = setInterval(async () => {
+        try {
+          const res = await fetch('/api/test-status');
+          const data = await res.json();
+          if (data && data.logs && data.logs.length) {
+            const terminalLogs = document.getElementById('terminalLogs');
+            terminalLogs.innerHTML = data.logs.map(l => `<div class="log-line">${escapeHtml(l)}</div>`).join('');
+            terminalLogs.scrollTop = terminalLogs.scrollHeight;
+          }
+          if (data.status === 'passed' || data.status === 'failed') {
+            document.getElementById('statusText').textContent = `Test run completed with status: ${data.status.toUpperCase()}`;
+            clearInterval(pollInterval);
+          }
+        } catch (e) {}
+      }, 2500);
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+  </script>
 
 </body>
 </html>
