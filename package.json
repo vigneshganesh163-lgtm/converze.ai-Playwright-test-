@@ -1,0 +1,16 @@
+{
+  "name": "converze-ai-test-reports-portal",
+  "version": "1.0.0",
+  "description": "Converze.AI Automated Playwright Test Suite Results Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "playwright",
+    "test-results",
+    "converze-ai"
+  ],
+  "author": "",
+  "license": "ISC"
+}

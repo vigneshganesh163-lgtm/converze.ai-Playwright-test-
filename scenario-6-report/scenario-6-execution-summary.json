@@ -1,0 +1,679 @@
+{
+  "testTitle": "Converze.AI Public Portal - Scenario 6: 12 Users, Mixed Survey (2 Support + 2 Oppose) & Balanced Pros/Oppose Questions Validation",
+  "executionDate": "2026-11-12T09:46:54.598Z",
+  "articleTitle": "The US$6.3 billion Binance hack is the biggest heist ever – it should be a wake up call for cryptocurrency users",
+  "articleId": "0697f596-67da-4009-af49-9e360789f1cc",
+  "chatroomId": "6af584212ebfbb2eca0451f4",
+  "chatroomName": "Scenario6-MixedView-995493",
+  "totalUsers": 12,
+  "participantCount": 4,
+  "guestCount": 8,
+  "surveyMode": "MIXED_VIEWPOINTS_2_SUPPORT_2_OPPOSE",
+  "surveyResponses": {
+    "support": [
+      {
+        "qIndex": 1,
+        "text": "Cryptocurrency exchanges should fully reimburse users for funds lost in security breaches.",
+        "answer": "Strongly Agree"
+      },
+      {
+        "qIndex": 2,
+        "text": "People who keep their funds on an exchange share some responsibility when those funds are stolen.",
+        "answer": "Disagree"
+      },
+      {
+        "qIndex": 3,
+        "text": "Governments should require crypto exchanges to follow the same security standards as traditional banks.",
+        "answer": "Strongly Agree"
+      },
+      {
+        "qIndex": 4,
+        "text": "Stricter government regulation of crypto exchanges would do more harm than good to the industry.",
+        "answer": "Strongly Disagree"
+      },
+      {
+        "qIndex": 5,
+        "text": "Exchanges should keep most user funds in offline storage, even if it makes withdrawals slower.",
+        "answer": "Strongly Agree"
+      },
+      {
+        "qIndex": 6,
+        "text": "The convenience of trading on centralised exchanges outweighs the security risks they carry.",
+        "answer": "Strongly Disagree"
+      },
+      {
+        "qIndex": 7,
+        "text": "Ordinary people should not need technical knowledge to keep their cryptocurrency safe.",
+        "answer": "Strongly Agree"
+      },
+      {
+        "qIndex": 8,
+        "text": "Crypto exchanges should be required to publish regular independent security audits for their users.",
+        "answer": "Strongly Agree"
+      },
+      {
+        "qIndex": 9,
+        "text": "Blockchain technology itself is more secure than the companies and platforms built around it.",
+        "answer": "Strongly Agree"
+      },
+      {
+        "qIndex": 10,
+        "text": "Cryptocurrency remains a reasonable investment choice for ordinary savers despite high-profile thefts.",
+        "answer": "Disagree"
+      }
+    ],
+    "oppose": [
+      {
+        "qIndex": 1,
+        "text": "Cryptocurrency exchanges should fully reimburse users for funds lost in security breaches.",
+        "answer": "Disagree"
+      },
+      {
+        "qIndex": 2,
+        "text": "People who keep their funds on an exchange share some responsibility when those funds are stolen.",
+        "answer": "Strongly Agree"
+      },
+      {
+        "qIndex": 3,
+        "text": "Governments should require crypto exchanges to follow the same security standards as traditional banks.",
+        "answer": "Disagree"
+      },
+      {
+        "qIndex": 4,
+        "text": "Stricter government regulation of crypto exchanges would do more harm than good to the industry.",
+        "answer": "Strongly Agree"
+      },
+      {
+        "qIndex": 5,
+        "text": "Exchanges should keep most user funds in offline storage, even if it makes withdrawals slower.",
+        "answer": "Disagree"
+      },
+      {
+        "qIndex": 6,
+        "text": "The convenience of trading on centralised exchanges outweighs the security risks they carry.",
+        "answer": "Agree"
+      },
+      {
+        "qIndex": 7,
+        "text": "Ordinary people should not need technical knowledge to keep their cryptocurrency safe.",
+        "answer": "Disagree"
+      },
+      {
+        "qIndex": 8,
+        "text": "Crypto exchanges should be required to publish regular independent security audits for their users.",
+        "answer": "Disagree"
+      },
+      {
+        "qIndex": 9,
+        "text": "Blockchain technology itself is more secure than the companies and platforms built around it.",
+        "answer": "Disagree"
+      },
+      {
+        "qIndex": 10,
+        "text": "Cryptocurrency remains a reasonable investment choice for ordinary savers despite high-profile thefts.",
+        "answer": "Strongly Agree"
+      }
+    ]
+  },
+  "criticalValidation": {
+    "configuredProsCount": 30,
+    "configuredOpposeCount": 30,
+    "deliveredProsCount": 11,
+    "deliveredOpposeCount": 10,
+    "bothViewpointsDelivered": true,
+    "opposeQuestionsDetected": true,
+    "prosQuestionsDetected": true,
+    "criticalFailureFlag": false,
+    "validationResult": "PASSED_BALANCED_MIXED_QUESTIONS",
+    "result": "PASS - Both Pros AND Oppose questions delivered (expected for 2 Support + 2 Oppose mixed viewpoints)",
+    "detailedAudit": [
+      {
+        "round": 1,
+        "index": 1,
+        "questionText": "Does the Binance hack prove that even the world's largest exchange cannot be trusted to safeguard user funds?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Binance hack proves exchange untrustworthy"
+      },
+      {
+        "round": 1,
+        "index": 2,
+        "questionText": "Why frame this as a 'wake-up call for crypto users' when the underlying blockchains themselves were never breached?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Underlying blockchains were never breached"
+      },
+      {
+        "round": 1,
+        "index": 3,
+        "questionText": "If $6.3 billion can be drained in roughly 20 minutes, should users ever treat centralized exchanges as safe places to hold assets?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Centralized exchanges safe places to hold assets"
+      },
+      {
+        "round": 1,
+        "index": 4,
+        "questionText": "Doesn't Binance restoring 95% of assets within days and freezing another $3 billion show the industry's safety nets already worked?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Binance restoring assets shows safety nets work"
+      },
+      {
+        "round": 1,
+        "index": 5,
+        "questionText": "Does this attack vindicate the 'not your keys, not your coins' philosophy about self-custody?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Not your keys not your coins self custody"
+      },
+      {
+        "round": 1,
+        "index": 6,
+        "questionText": "Traditional banks and payment systems have suffered massive fraud and cyber losses too — is this really a uniquely crypto problem?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Traditional banks suffered massive fraud too"
+      },
+      {
+        "round": 1,
+        "index": 7,
+        "questionText": "Should all exchanges now be required to publish independent, third-party security audits of their withdrawal and signing infrastructure?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Exchanges required to publish independent security audits"
+      },
+      {
+        "round": 1,
+        "index": 8,
+        "questionText": "Isn't the real lesson that one company had an operational security lapse, not that cryptocurrency itself is unsafe?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "One company operational lapse not crypto unsafe"
+      },
+      {
+        "round": 2,
+        "index": 1,
+        "questionText": "Since Binance restored assets from its corporate treasury rather than recovering the stolen funds, does this suggest exchanges reuse or recycle customer deposits?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Exchanges reuse customer deposits"
+      },
+      {
+        "round": 2,
+        "index": 2,
+        "questionText": "Wouldn't heavy-handed regulation born from this incident punish the entire industry for a single exchange's failure?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Heavy-handed regulation punishes entire industry"
+      },
+      {
+        "round": 2,
+        "index": 3,
+        "questionText": "Should regulators mandate that a significant percentage of exchange reserves be held in audited cold storage?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Mandate exchange reserves in audited cold storage"
+      },
+      {
+        "round": 2,
+        "index": 4,
+        "questionText": "Shouldn't the blame fall on state-sponsored hackers, such as those linked to North Korea, rather than on crypto users' choices?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Blame fall on state-sponsored hackers"
+      },
+      {
+        "round": 2,
+        "index": 5,
+        "questionText": "Is it time for crypto exchanges to have bank-style deposit insurance backed by regulators rather than voluntary corporate funds?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Bank-style deposit insurance backed by regulators"
+      },
+      {
+        "round": 2,
+        "index": 6,
+        "questionText": "Doesn't the rapid freezing of stolen funds across multiple blockchains demonstrate that blockchain transparency is actually a security strength?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Freezing funds demonstrates blockchain transparency strength"
+      },
+      {
+        "round": 2,
+        "index": 7,
+        "questionText": "Should exchanges with compromised withdrawal systems be required to halt operations until independent audits confirm they are secure?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Halt operations until independent audits confirm secure"
+      },
+      {
+        "round": 3,
+        "index": 1,
+        "questionText": "Does this hack show that blockchain security and exchange security are fundamentally different, so users must stop conflating them?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Blockchain security and exchange security fundamentally different"
+      },
+      {
+        "round": 3,
+        "index": 2,
+        "questionText": "Is mass self-custody realistic when ordinary users routinely lose keys and fall for phishing scams?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Mass self-custody realistic when users lose keys"
+      },
+      {
+        "round": 3,
+        "index": 3,
+        "questionText": "Given suspected North Korean involvement, should there be stronger international coordination to freeze and recover state-linked crypto theft?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Stronger international coordination for state-linked crypto theft"
+      },
+      {
+        "round": 3,
+        "index": 4,
+        "questionText": "Isn't it premature to demand policy changes or pause features like EIP-7702 before attribution and root cause are fully established?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Premature to demand policy changes before root cause established"
+      },
+      {
+        "round": 3,
+        "index": 5,
+        "questionText": "Should multi-signature approvals and time-locks on large withdrawals become mandatory industry standards after this breach?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Multi-signature approvals and time-locks mandatory"
+      },
+      {
+        "round": 3,
+        "index": 6,
+        "questionText": "Why single out crypto for a 'wake-up call' when breaches happen across every financial system?",
+        "detectedCategory": "OPPOSE",
+        "status": "VALID",
+        "matchedAdminText": "Why single out crypto when breaches happen everywhere"
+      }
+    ]
+  },
+  "guestCountVerification": {
+    "initialGuestCount": 8,
+    "tooltipText": "8 Guests",
+    "participantsExcluded": true,
+    "afterGuestLeaveCount": 7,
+    "afterGuestRejoinCount": 8
+  },
+  "permissionAudit": {
+    "guests": {
+      "canWatch": true,
+      "cannotAnswerQuestions": true,
+      "cannotParticipateInSpeakingTurns": true,
+      "cannotSendChatMessages": true,
+      "cannotGivePoints": true,
+      "canSendEmojiReactions": true,
+      "cannotInterruptProgression": true
+    },
+    "participants": {
+      "canAnswerQuestions": true,
+      "canCompleteSpeakingTurns": true,
+      "canSendChatMessages": true,
+      "canViewChatMessages": true,
+      "canGivePoints": true,
+      "pointsCorrectlyReflected": true,
+      "canSendEmojiReactions": true,
+      "canViewEmojiReactions": true
+    }
+  },
+  "roundsCaptured": [
+    {
+      "roundNumber": 1,
+      "questionCount": 8
+    },
+    {
+      "roundNumber": 2,
+      "questionCount": 7
+    },
+    {
+      "roundNumber": 3,
+      "questionCount": 6
+    }
+  ],
+  "activeQuestionsTracked": [
+    {
+      "round": 1,
+      "questionText": "Does the Binance hack prove that even the world's largest exchange cannot be trusted to safeguard user funds?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 1,
+      "questionText": "Why frame this as a 'wake-up call for crypto users' when the underlying blockchains themselves were never breached?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 1,
+      "questionText": "If $6.3 billion can be drained in roughly 20 minutes, should users ever treat centralized exchanges as safe places to hold assets?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 1,
+      "questionText": "Doesn't Binance restoring 95% of assets within days and freezing another $3 billion show the industry's safety nets already worked?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 1,
+      "questionText": "Does this attack vindicate the 'not your keys, not your coins' philosophy about self-custody?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 1,
+      "questionText": "Traditional banks and payment systems have suffered massive fraud and cyber losses too — is this really a uniquely crypto problem?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 1,
+      "questionText": "Should all exchanges now be required to publish independent, third-party security audits of their withdrawal and signing infrastructure?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 1,
+      "questionText": "Isn't the real lesson that one company had an operational security lapse, not that cryptocurrency itself is unsafe?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 2,
+      "questionText": "Since Binance restored assets from its corporate treasury rather than recovering the stolen funds, does this suggest exchanges reuse or recycle customer deposits?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 2,
+      "questionText": "Wouldn't heavy-handed regulation born from this incident punish the entire industry for a single exchange's failure?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 2,
+      "questionText": "Should regulators mandate that a significant percentage of exchange reserves be held in audited cold storage?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 2,
+      "questionText": "Shouldn't the blame fall on state-sponsored hackers, such as those linked to North Korea, rather than on crypto users' choices?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 2,
+      "questionText": "Is it time for crypto exchanges to have bank-style deposit insurance backed by regulators rather than voluntary corporate funds?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 2,
+      "questionText": "Doesn't the rapid freezing of stolen funds across multiple blockchains demonstrate that blockchain transparency is actually a security strength?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 2,
+      "questionText": "Should exchanges with compromised withdrawal systems be required to halt operations until independent audits confirm they are secure?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 3,
+      "questionText": "Does this hack show that blockchain security and exchange security are fundamentally different, so users must stop conflating them?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 3,
+      "questionText": "Is mass self-custody realistic when ordinary users routinely lose keys and fall for phishing scams?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 3,
+      "questionText": "Given suspected North Korean involvement, should there be stronger international coordination to freeze and recover state-linked crypto theft?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 3,
+      "questionText": "Isn't it premature to demand policy changes or pause features like EIP-7702 before attribution and root cause are fully established?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 3,
+      "questionText": "Should multi-signature approvals and time-locks on large withdrawals become mandatory industry standards after this breach?",
+      "category": "PROS",
+      "timestamp": 1794476814601
+    },
+    {
+      "round": 3,
+      "questionText": "Why single out crypto for a 'wake-up call' when breaches happen across every financial system?",
+      "category": "OPPOSE",
+      "timestamp": 1794476814601
+    }
+  ],
+  "observedRoundBadges": [
+    1,
+    2,
+    3
+  ],
+  "leaderboardObserved": true,
+  "leaderboardData": {
+    "header": "Discussion Complete",
+    "hasDiscussionComplete": true,
+    "hasPointsSummary": true
+  },
+  "meetingEnded": true,
+  "users": [
+    {
+      "id": "user1_creator",
+      "name": "Creator_MixedQA_995493",
+      "email": "user1_creator_s6@example.com",
+      "assignedRole": "Participant",
+      "surveySubmitted": true,
+      "viewpoint": "support"
+    },
+    {
+      "id": "user2_member1",
+      "name": "Member1_Support_995493",
+      "email": "user2_member1_s6@example.com",
+      "assignedRole": "Participant",
+      "surveySubmitted": true,
+      "viewpoint": "support"
+    },
+    {
+      "id": "user3_member2",
+      "name": "Member2_Oppose_995493",
+      "email": "user3_member2_s6@example.com",
+      "assignedRole": "Participant",
+      "surveySubmitted": true,
+      "viewpoint": "oppose"
+    },
+    {
+      "id": "user4_member3",
+      "name": "Member3_Oppose_995493",
+      "email": "user4_member3_s6@example.com",
+      "assignedRole": "Participant",
+      "surveySubmitted": true,
+      "viewpoint": "oppose"
+    },
+    {
+      "id": "user5_guest1",
+      "name": "Guest1_MixedQA_995493",
+      "email": "user5_guest1_s6@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user6_guest2",
+      "name": "Guest2_MixedQA_995493",
+      "email": "user6_guest2_s6@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user7_guest3",
+      "name": "Guest3_MixedQA_995493",
+      "email": "user7_guest3_s6@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user8_guest4",
+      "name": "Guest4_MixedQA_995493",
+      "email": "user8_guest4_s6@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user9_guest5",
+      "name": "Guest5_MixedQA_995493",
+      "email": "user9_guest5_s6@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user10_guest6",
+      "name": "Guest6_MixedQA_995493",
+      "email": "user10_guest6_s6@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user11_guest7",
+      "name": "Guest7_MixedQA_995493",
+      "email": "user11_guest7_s6@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user12_guest8",
+      "name": "Guest8_MixedQA_995493",
+      "email": "user12_guest8_s6@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    }
+  ],
+  "videos": [
+    {
+      "id": "user1_creator",
+      "name": "Creator_MixedQA_995493",
+      "role": "Participant",
+      "file": "videos/user1_creator-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user2_member1",
+      "name": "Member1_Support_995493",
+      "role": "Participant",
+      "file": "videos/user2_member1-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user3_member2",
+      "name": "Member2_Oppose_995493",
+      "role": "Participant",
+      "file": "videos/user3_member2-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user4_member3",
+      "name": "Member3_Oppose_995493",
+      "role": "Participant",
+      "file": "videos/user4_member3-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user5_guest1",
+      "name": "Guest1_MixedQA_995493",
+      "role": "Guest Viewer",
+      "file": "videos/user5_guest1-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user6_guest2",
+      "name": "Guest2_MixedQA_995493",
+      "role": "Guest Viewer",
+      "file": "videos/user6_guest2-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user7_guest3",
+      "name": "Guest3_MixedQA_995493",
+      "role": "Guest Viewer",
+      "file": "videos/user7_guest3-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user8_guest4",
+      "name": "Guest4_MixedQA_995493",
+      "role": "Guest Viewer",
+      "file": "videos/user8_guest4-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user9_guest5",
+      "name": "Guest5_MixedQA_995493",
+      "role": "Guest Viewer",
+      "file": "videos/user9_guest5-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user10_guest6",
+      "name": "Guest6_MixedQA_995493",
+      "role": "Guest Viewer",
+      "file": "videos/user10_guest6-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user11_guest7",
+      "name": "Guest7_MixedQA_995493",
+      "role": "Guest Viewer",
+      "file": "videos/user11_guest7-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user12_guest8",
+      "name": "Guest8_MixedQA_995493",
+      "role": "Guest Viewer",
+      "file": "videos/user12_guest8-session.webm",
+      "srcFound": true
+    }
+  ],
+  "screenshots": [
+    "phase2-article-detail-page.png",
+    "phase2-chatroom-created.png",
+    "phase3-all-12-users-connected.png",
+    "phase4-survey-answered-mixed.png",
+    "phase5-participant-interactions.png",
+    "phase6-guest-count-after-rejoin.png",
+    "phase6-guest-count-hover-8.png",
+    "phase6-guest-count-updated-7.png",
+    "phase7-guest-permissions-verified.png",
+    "phase8-meeting-started.png",
+    "phase8-round-1-active.png"
+  ]
+}

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: converze-ai-test-reports
+    env: node
+    plan: free
+    buildCommand: ""
+    startCommand: node server.js
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 10000

@@ -1,0 +1,714 @@
+{
+  "testTitle": "Converze.AI Public Portal - Scenario 5: 12 Users, Support Survey Responses & Only Pros Questions Validation",
+  "executionDate": "2026-11-12T08:16:38.580Z",
+  "articleTitle": "Tech needs legacy businesses to grow trillions into AI buildout",
+  "articleId": "280abb86bed95dbb34da8ada9e5a49aa",
+  "chatroomId": "6af56bd82ebfbb2eca04518d",
+  "chatroomName": "Scenario5-SupportAI-775896",
+  "totalUsers": 12,
+  "participantCount": 4,
+  "guestCount": 8,
+  "surveyMode": "ALL_PARTICIPANTS_ANSWERED_SUPPORT",
+  "surveyResponses": [
+    {
+      "qIndex": 1,
+      "text": "How should big tech companies approach heavy spending on AI infrastructure?",
+      "answer": "Strongly Agree"
+    },
+    {
+      "qIndex": 2,
+      "text": "Heavy AI infrastructure spending is a worthwhile investment even if profits are years away.",
+      "answer": "Strongly Agree"
+    },
+    {
+      "qIndex": 3,
+      "text": "Funding AI ambitions with profits from existing core businesses is a sound strategy for tech companies.",
+      "answer": "Strongly Agree"
+    },
+    {
+      "qIndex": 4,
+      "text": "Tech companies should cut back AI spending if their core businesses show signs of strain.",
+      "answer": "Disagree"
+    },
+    {
+      "qIndex": 5,
+      "text": "Borrowing money or selling stock to fund AI infrastructure is too risky for large tech companies.",
+      "answer": "Disagree"
+    },
+    {
+      "qIndex": 6,
+      "text": "Company leadership, rather than investors or regulators, should decide how much to spend on AI.",
+      "answer": "Strongly Agree"
+    },
+    {
+      "qIndex": 7,
+      "text": "How confident are you that today's massive AI investments will eventually generate strong returns?",
+      "answer": "Strongly Agree"
+    },
+    {
+      "qIndex": 8,
+      "text": "What concerns you most about the current scale of AI infrastructure spending by tech giants?",
+      "answer": "Disagree"
+    },
+    {
+      "qIndex": 9,
+      "text": "Who should bear the greatest risk if heavy AI spending fails to produce the expected returns?",
+      "answer": "Strongly Agree"
+    },
+    {
+      "qIndex": 10,
+      "text": "Should there be external oversight of how large tech companies fund their AI buildouts?",
+      "answer": "Disagree"
+    }
+  ],
+  "criticalValidation": {
+    "configuredProsCount": 30,
+    "configuredOpposeCount": 30,
+    "deliveredProsCount": 30,
+    "deliveredOpposeCount": 0,
+    "opposeQuestionsDetected": false,
+    "criticalFailureFlag": false,
+    "validationResult": "PASSED_100_PERCENT",
+    "detailedAudit": [
+      {
+        "round": 1,
+        "index": 1,
+        "questionText": "If analysts expect Amazon's capex to top $280 billion next year with $220 billion this year, how do you defend that pace against signs that the retail and cloud businesses cannot generate cash fast enough to keep up?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Amazon capex defense against cash generation pace"
+      },
+      {
+        "round": 1,
+        "index": 2,
+        "questionText": "If Microsoft is the only hyperscaler still generating positive free cash flow and it is turning to the bond market, how do you defend the claim that these companies can sustain extended spending without weakening their finances?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Defend claim companies sustain extended spending without weakening finances"
+      },
+      {
+        "round": 1,
+        "index": 3,
+        "questionText": "What specific milestones—such as revenue from apps like Meta's Muse or commercial software integrations—would satisfy you that the multitrillion-dollar AI infrastructure bet is progressing on track?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Milestones for multitrillion-dollar AI infrastructure progressing on track"
+      },
+      {
+        "round": 1,
+        "index": 4,
+        "questionText": "How practical is it for companies like Microsoft to rely on the bond market for AI capex when borrowing costs remain elevated compared with the era of near-zero interest rates?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Practicality of relying on bond market for AI capex"
+      },
+      {
+        "round": 1,
+        "index": 5,
+        "questionText": "How would you communicate the long-term value of this spending to shareholders who are seeing their returns diluted and their share prices drop after earnings reports?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Communicate long-term value of spending to shareholders"
+      },
+      {
+        "round": 1,
+        "index": 6,
+        "questionText": "What safeguards would you suggest so that funding AI through stock sales or debt does not leave tech giants overleveraged if the payoff takes longer than expected?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Safeguards against overleveraging from AI capex"
+      },
+      {
+        "round": 1,
+        "index": 7,
+        "questionText": "How do you justify Meta's plan to raise $95 billion in stock when its shares fell 7% after earnings, and what makes that level of dilution acceptable to fund data centers?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Justify Meta's plan to raise stock to fund data centers"
+      },
+      {
+        "round": 1,
+        "index": 8,
+        "questionText": "What do you see as the main reason investors reacted negatively—Meta shares down 7%, Alphabet falling 2%, and Amazon guiding light—and how would you address their concerns?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Address investor concerns over negative free cash flow"
+      },
+      {
+        "round": 2,
+        "index": 1,
+        "questionText": "If rising interest rates are making it costlier to raise debt, why is continuing to spend at this rate still the right choice compared with pausing until capital becomes cheaper?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Continuing to spend is the right choice versus pausing"
+      },
+      {
+        "round": 2,
+        "index": 2,
+        "questionText": "Why is Meta's early success with its Muse AI agent app and foundational models evidence that current spending levels will eventually yield substantial commercial returns?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Meta Muse AI success evidence of commercial returns"
+      },
+      {
+        "round": 2,
+        "index": 3,
+        "questionText": "How much of the current spending surge, in your view, comes from genuine market demand versus fear of falling behind competitors, and does that distinction matter for the outcome?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Market demand driving capital expenditure"
+      },
+      {
+        "round": 2,
+        "index": 4,
+        "questionText": "What would you say to the argument that Amazon's slowing online sales, up only 2% versus 10% a year ago, and holiday-quarter guidance below the $244.5 billion analysts expected show the core business cannot carry this spending?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Core businesses carrying infrastructure investment"
+      },
+      {
+        "round": 2,
+        "index": 5,
+        "questionText": "How would you structure the balance between AI investment and profitability if you were advising the chief financial officer of Alphabet or Amazon today?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Structuring balance between AI investment and profitability"
+      },
+      {
+        "round": 2,
+        "index": 6,
+        "questionText": "What would you propose to reassure investors who fear the spending has taken on a life of its own without sufficient accountability to near-term returns?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Accountability for long-term strategic technology investments"
+      },
+      {
+        "round": 2,
+        "index": 7,
+        "questionText": "If negative free cash flow at Meta, Alphabet, and Amazon is a temporary phase while infrastructure gets built, how would you respond to investors who say the strain on legacy businesses shows the bet is already failing?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Negative free cash flow is temporary infrastructure phase"
+      },
+      {
+        "round": 3,
+        "index": 1,
+        "questionText": "How do you respond to critics who point out that rising interest rates make debt-financed data center construction significantly more expensive than when these plans were drafted?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Data center construction returns surpass cost of capital"
+      },
+      {
+        "round": 3,
+        "index": 2,
+        "questionText": "What is your answer to those who argue that a multitrillion-dollar buildout is reckless when the primary commercial applications of generative AI are still nascent?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Early mover advantage justifies bold infrastructure investment"
+      },
+      {
+        "round": 3,
+        "index": 3,
+        "questionText": "Why is it reasonable for these companies to fund AI ambitions from advertising, software, and e-commerce profits rather than waiting for proven AI revenue, given that Alphabet's search growth has slowed for a third straight quarter?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Reasonable to fund AI ambitions from cash flows"
+      },
+      {
+        "round": 3,
+        "index": 4,
+        "questionText": "What role do you think demand for computing capacity plays in pushing hyperscalers to invest heavily despite negative free cash flow?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Unprecedented computing capacity demand pushes investment"
+      },
+      {
+        "round": 3,
+        "index": 5,
+        "questionText": "How confident are you that proprietary software integrations and AI agents will create moats wide enough to protect the margins needed to service this debt?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Proprietary AI agents create sustainable enterprise moats"
+      },
+      {
+        "round": 3,
+        "index": 6,
+        "questionText": "If neoclouds come under pressure from rising rates, how should hyperscalers capitalize on their balance sheet advantages to consolidate infrastructure market share?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Hyperscalers leverage balance sheet strength"
+      },
+      {
+        "round": 4,
+        "index": 1,
+        "questionText": "How does the strategic risk of underinvesting in AI infrastructure compare to the financial risk of overspending during this foundational platform shift?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Strategic risk of falling behind exceeds near-term capex risk"
+      },
+      {
+        "round": 4,
+        "index": 2,
+        "questionText": "Why is building compute capacity ahead of the demand curve the essential prerequisite for next-generation frontier intelligence models?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Capacity building ahead of demand curve is essential"
+      },
+      {
+        "round": 4,
+        "index": 3,
+        "questionText": "What competitive advantages do diversified tech leaders like Alphabet, Meta, and Microsoft possess that smaller specialized AI startups cannot duplicate?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Diversified distribution and compute economies of scale"
+      },
+      {
+        "round": 4,
+        "index": 4,
+        "questionText": "How do enterprise productivity enhancements and cloud workload transitions validate the long-term economic case for heavy AI infrastructure deployment?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Enterprise productivity gains validate capex ROI"
+      },
+      {
+        "round": 5,
+        "index": 1,
+        "questionText": "Why will future corporate productivity, scientific discovery, and global digital GDP growth be directly enabled by today's massive compute investments?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Future global digital GDP growth powered by compute infrastructure"
+      },
+      {
+        "round": 5,
+        "index": 2,
+        "questionText": "In conclusion, how does history demonstrate that foundational platform investments (from railroads to cloud computing) initially strained cash flows before creating immense compounding shareholder value?",
+        "detectedCategory": "PROS",
+        "status": "VALID",
+        "matchedAdminText": "Historical precedent shows infrastructure bet produces compounding value"
+      }
+    ]
+  },
+  "guestCountVerification": {
+    "initialGuestCount": 8,
+    "tooltipText": "8 Guests",
+    "participantsExcluded": true,
+    "afterGuestLeaveCount": 7,
+    "afterGuestRejoinCount": 8
+  },
+  "permissionAudit": {
+    "guests": {
+      "canWatch": true,
+      "cannotAnswerQuestions": true,
+      "cannotParticipateInSpeakingTurns": true,
+      "cannotSendChatMessages": true,
+      "cannotGivePoints": true,
+      "canSendEmojiReactions": true,
+      "cannotInterruptProgression": true
+    },
+    "participants": {
+      "canAnswerQuestions": true,
+      "canCompleteSpeakingTurns": true,
+      "canSendChatMessages": true,
+      "canViewChatMessages": true,
+      "canGivePoints": true,
+      "pointsCorrectlyReflected": true,
+      "canSendEmojiReactions": true,
+      "canViewEmojiReactions": true
+    }
+  },
+  "roundsCaptured": [
+    {
+      "roundNumber": 1,
+      "questionCount": 8
+    },
+    {
+      "roundNumber": 2,
+      "questionCount": 7
+    },
+    {
+      "roundNumber": 3,
+      "questionCount": 6
+    },
+    {
+      "roundNumber": 4,
+      "questionCount": 5
+    },
+    {
+      "roundNumber": 5,
+      "questionCount": 4
+    }
+  ],
+  "activeQuestionsTracked": [
+    {
+      "round": 1,
+      "questionText": "If analysts expect Amazon's capex to top $280 billion next year with $220 billion this year, how do you defend that pace against signs that the retail and cloud businesses cannot generate cash fast enough to keep up?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 1,
+      "questionText": "If Microsoft is the only hyperscaler still generating positive free cash flow and it is turning to the bond market, how do you defend the claim that these companies can sustain extended spending without weakening their finances?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 1,
+      "questionText": "What specific milestones—such as revenue from apps like Meta's Muse or commercial software integrations—would satisfy you that the multitrillion-dollar AI infrastructure bet is progressing on track?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 1,
+      "questionText": "How practical is it for companies like Microsoft to rely on the bond market for AI capex when borrowing costs remain elevated compared with the era of near-zero interest rates?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 1,
+      "questionText": "How would you communicate the long-term value of this spending to shareholders who are seeing their returns diluted and their share prices drop after earnings reports?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 1,
+      "questionText": "What safeguards would you suggest so that funding AI through stock sales or debt does not leave tech giants overleveraged if the payoff takes longer than expected?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 1,
+      "questionText": "How do you justify Meta's plan to raise $95 billion in stock when its shares fell 7% after earnings, and what makes that level of dilution acceptable to fund data centers?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 1,
+      "questionText": "What do you see as the main reason investors reacted negatively—Meta shares down 7%, Alphabet falling 2%, and Amazon guiding light—and how would you address their concerns?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 2,
+      "questionText": "If rising interest rates are making it costlier to raise debt, why is continuing to spend at this rate still the right choice compared with pausing until capital becomes cheaper?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 2,
+      "questionText": "Why is Meta's early success with its Muse AI agent app and foundational models evidence that current spending levels will eventually yield substantial commercial returns?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 2,
+      "questionText": "How much of the current spending surge, in your view, comes from genuine market demand versus fear of falling behind competitors, and does that distinction matter for the outcome?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 2,
+      "questionText": "What would you say to the argument that Amazon's slowing online sales, up only 2% versus 10% a year ago, and holiday-quarter guidance below the $244.5 billion analysts expected show the core business cannot carry this spending?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 2,
+      "questionText": "How would you structure the balance between AI investment and profitability if you were advising the chief financial officer of Alphabet or Amazon today?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 2,
+      "questionText": "What would you propose to reassure investors who fear the spending has taken on a life of its own without sufficient accountability to near-term returns?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 2,
+      "questionText": "If negative free cash flow at Meta, Alphabet, and Amazon is a temporary phase while infrastructure gets built, how would you respond to investors who say the strain on legacy businesses shows the bet is already failing?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 3,
+      "questionText": "How do you respond to critics who point out that rising interest rates make debt-financed data center construction significantly more expensive than when these plans were drafted?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 3,
+      "questionText": "What is your answer to those who argue that a multitrillion-dollar buildout is reckless when the primary commercial applications of generative AI are still nascent?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 3,
+      "questionText": "Why is it reasonable for these companies to fund AI ambitions from advertising, software, and e-commerce profits rather than waiting for proven AI revenue, given that Alphabet's search growth has slowed for a third straight quarter?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 3,
+      "questionText": "What role do you think demand for computing capacity plays in pushing hyperscalers to invest heavily despite negative free cash flow?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 3,
+      "questionText": "How confident are you that proprietary software integrations and AI agents will create moats wide enough to protect the margins needed to service this debt?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 3,
+      "questionText": "If neoclouds come under pressure from rising rates, how should hyperscalers capitalize on their balance sheet advantages to consolidate infrastructure market share?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 4,
+      "questionText": "How does the strategic risk of underinvesting in AI infrastructure compare to the financial risk of overspending during this foundational platform shift?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 4,
+      "questionText": "Why is building compute capacity ahead of the demand curve the essential prerequisite for next-generation frontier intelligence models?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 4,
+      "questionText": "What competitive advantages do diversified tech leaders like Alphabet, Meta, and Microsoft possess that smaller specialized AI startups cannot duplicate?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 4,
+      "questionText": "How do enterprise productivity enhancements and cloud workload transitions validate the long-term economic case for heavy AI infrastructure deployment?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 5,
+      "questionText": "Why will future corporate productivity, scientific discovery, and global digital GDP growth be directly enabled by today's massive compute investments?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    },
+    {
+      "round": 5,
+      "questionText": "In conclusion, how does history demonstrate that foundational platform investments (from railroads to cloud computing) initially strained cash flows before creating immense compounding shareholder value?",
+      "category": "PROS",
+      "timestamp": 1794471398592
+    }
+  ],
+  "observedRoundBadges": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "leaderboardObserved": true,
+  "leaderboardData": {
+    "header": "Discussion Complete",
+    "hasDiscussionComplete": true,
+    "hasPointsSummary": true
+  },
+  "meetingEnded": true,
+  "users": [
+    {
+      "id": "user1_creator",
+      "name": "Creator_ProsQA_775896",
+      "email": "user1_creator_s5@example.com",
+      "assignedRole": "Participant",
+      "surveySubmitted": true,
+      "viewpoint": "support"
+    },
+    {
+      "id": "user2_member1",
+      "name": "Member1_ProsQA_775896",
+      "email": "user2_member1_s5@example.com",
+      "assignedRole": "Participant",
+      "surveySubmitted": true,
+      "viewpoint": "support"
+    },
+    {
+      "id": "user3_member2",
+      "name": "Member2_ProsQA_775896",
+      "email": "user3_member2_s5@example.com",
+      "assignedRole": "Participant",
+      "surveySubmitted": true,
+      "viewpoint": "support"
+    },
+    {
+      "id": "user4_member3",
+      "name": "Member3_ProsQA_775896",
+      "email": "user4_member3_s5@example.com",
+      "assignedRole": "Participant",
+      "surveySubmitted": true,
+      "viewpoint": "support"
+    },
+    {
+      "id": "user5_guest1",
+      "name": "Guest1_ProsQA_775896",
+      "email": "user5_guest1_s5@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user6_guest2",
+      "name": "Guest2_ProsQA_775896",
+      "email": "user6_guest2_s5@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user7_guest3",
+      "name": "Guest3_ProsQA_775896",
+      "email": "user7_guest3_s5@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user8_guest4",
+      "name": "Guest4_ProsQA_775896",
+      "email": "user8_guest4_s5@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user9_guest5",
+      "name": "Guest5_ProsQA_775896",
+      "email": "user9_guest5_s5@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user10_guest6",
+      "name": "Guest6_ProsQA_775896",
+      "email": "user10_guest6_s5@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user11_guest7",
+      "name": "Guest7_ProsQA_775896",
+      "email": "user11_guest7_s5@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    },
+    {
+      "id": "user12_guest8",
+      "name": "Guest8_ProsQA_775896",
+      "email": "user12_guest8_s5@example.com",
+      "assignedRole": "Guest Viewer",
+      "surveySubmitted": false,
+      "viewpoint": "guest"
+    }
+  ],
+  "videos": [
+    {
+      "id": "user1_creator",
+      "name": "Creator_ProsQA_775896",
+      "role": "Participant",
+      "file": "videos/user1_creator-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user2_member1",
+      "name": "Member1_ProsQA_775896",
+      "role": "Participant",
+      "file": "videos/user2_member1-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user3_member2",
+      "name": "Member2_ProsQA_775896",
+      "role": "Participant",
+      "file": "videos/user3_member2-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user4_member3",
+      "name": "Member3_ProsQA_775896",
+      "role": "Participant",
+      "file": "videos/user4_member3-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user5_guest1",
+      "name": "Guest1_ProsQA_775896",
+      "role": "Guest Viewer",
+      "file": "videos/user5_guest1-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user6_guest2",
+      "name": "Guest2_ProsQA_775896",
+      "role": "Guest Viewer",
+      "file": "videos/user6_guest2-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user7_guest3",
+      "name": "Guest3_ProsQA_775896",
+      "role": "Guest Viewer",
+      "file": "videos/user7_guest3-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user8_guest4",
+      "name": "Guest4_ProsQA_775896",
+      "role": "Guest Viewer",
+      "file": "videos/user8_guest4-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user9_guest5",
+      "name": "Guest5_ProsQA_775896",
+      "role": "Guest Viewer",
+      "file": "videos/user9_guest5-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user10_guest6",
+      "name": "Guest6_ProsQA_775896",
+      "role": "Guest Viewer",
+      "file": "videos/user10_guest6-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user11_guest7",
+      "name": "Guest7_ProsQA_775896",
+      "role": "Guest Viewer",
+      "file": "videos/user11_guest7-session.webm",
+      "srcFound": true
+    },
+    {
+      "id": "user12_guest8",
+      "name": "Guest8_ProsQA_775896",
+      "role": "Guest Viewer",
+      "file": "videos/user12_guest8-session.webm",
+      "srcFound": true
+    }
+  ],
+  "screenshots": [
+    "phase2-article-detail-page.png",
+    "phase3-all-12-users-connected.png",
+    "phase4-survey-answered-support.png",
+    "phase6-guest-count-hover-8.png",
+    "phase6-guest-count-updated-7.png",
+    "phase6-guest-permissions-and-emoji.png",
+    "phase7-participant-interactions.png",
+    "phase8-meeting-completed.png",
+    "phase8-round-1-active.png"
+  ]
+}
