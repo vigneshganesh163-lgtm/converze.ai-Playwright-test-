@@ -57,10 +57,21 @@ const screenshots = {
   leaderboard: loadScreenshot('phase8-leaderboard-discussion-complete.png')
 };
 
-// Load video list
-const videoFiles = fs.existsSync(videosDir)
-  ? fs.readdirSync(videosDir).filter((f) => f.endsWith('.webm'))
-  : [];
+// Users list
+const usersList = summary?.users || [
+  { id: 'user1_creator', name: 'Creator_MixedQA_995493', assignedRole: 'Participant', viewpoint: 'support' },
+  { id: 'user2_member1', name: 'Member1_Support_995493', assignedRole: 'Participant', viewpoint: 'support' },
+  { id: 'user3_member2', name: 'Member2_Oppose_995493', assignedRole: 'Participant', viewpoint: 'oppose' },
+  { id: 'user4_member3', name: 'Member3_Oppose_995493', assignedRole: 'Participant', viewpoint: 'oppose' },
+  { id: 'user5_guest1', name: 'Guest1_MixedQA_995493', assignedRole: 'Guest Viewer' },
+  { id: 'user6_guest2', name: 'Guest2_MixedQA_995493', assignedRole: 'Guest Viewer' },
+  { id: 'user7_guest3', name: 'Guest3_MixedQA_995493', assignedRole: 'Guest Viewer' },
+  { id: 'user8_guest4', name: 'Guest4_MixedQA_995493', assignedRole: 'Guest Viewer' },
+  { id: 'user9_guest5', name: 'Guest5_MixedQA_995493', assignedRole: 'Guest Viewer' },
+  { id: 'user10_guest6', name: 'Guest6_MixedQA_995493', assignedRole: 'Guest Viewer' },
+  { id: 'user11_guest7', name: 'Guest7_MixedQA_995493', assignedRole: 'Guest Viewer' },
+  { id: 'user12_guest8', name: 'Guest8_MixedQA_995493', assignedRole: 'Guest Viewer' },
+];
 
 // Survey response data
 const supportAnswers = [
@@ -118,6 +129,45 @@ function surveyTable(title, viewpoint, answers) {
     </div>`;
 }
 
+// Generate Video Tabs & Video Panes
+const videoTabsHtml = usersList.map((u, i) => `
+  <button class="video-tab-btn ${i === 0 ? 'active' : ''}" onclick="switchVideoTab('${u.id}', this)">
+    ${u.assignedRole === 'Participant' ? '🎙️' : '👁️'} ${u.id.split('_')[1] || u.id}
+  </button>
+`).join('');
+
+const videoPanesHtml = usersList.map((u, i) => {
+  const fileName = `${u.id}-session.webm`;
+  const viewpointBadge = u.viewpoint === 'support'
+    ? '<span class="badge badge-support">Survey: Support</span>'
+    : u.viewpoint === 'oppose'
+    ? '<span class="badge badge-oppose">Survey: Oppose</span>'
+    : '';
+
+  return `
+    <div class="video-pane ${i === 0 ? 'active' : ''}" id="pane-${u.id}">
+      <div class="video-header">
+        <div>
+          <h4>User: ${u.name} (<code>${u.id}</code>) &mdash; Role: <span class="badge ${u.assignedRole === 'Participant' ? 'badge-participant' : 'badge-guest'}">${u.assignedRole}</span> ${viewpointBadge}</h4>
+        </div>
+        <div>
+          <a class="badge" style="background: rgba(255,255,255,0.08); color: #cbd5e1; text-decoration: none;" href="videos/${fileName}" target="_blank">↗ Open in Full Tab</a>
+        </div>
+      </div>
+      <div class="video-player-box">
+        <video controls preload="metadata">
+          <source src="videos/${fileName}" type="video/webm">
+          Your browser does not support HTML5 video streaming.
+        </video>
+      </div>
+      <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; display: flex; justify-content: space-between;">
+        <span>Format: WebM Video (VP9/Opus)</span>
+        <span>File: <code>scenario-6-report/videos/${fileName}</code></span>
+      </div>
+    </div>
+  `;
+}).join('');
+
 const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,9 +219,29 @@ const html = `<!DOCTYPE html>
   .cat-pros { color: #4ade80; font-weight: 600; }
   .cat-oppose { color: #f87171; font-weight: 600; }
   .cat-unknown { color: #fbbf24; font-weight: 600; }
-  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
-  .video-card { background: #0f172a; border-radius: 8px; padding: 1rem; border: 1px solid #334155; text-align: center; }
-  .video-card .video-name { font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem; word-break: break-all; }
+
+  /* VIDEO SECTION STYLES */
+  .video-tabs-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .video-tab-btn {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .video-tab-btn:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+  .video-tab-btn.active { background: #7c3aed; color: #fff; border-color: #7c3aed; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35); }
+  .video-pane { display: none; }
+  .video-pane.active { display: block; }
+  .video-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .video-header h4 { font-size: 1rem; color: #f8fafc; font-weight: 600; }
+  .video-player-box { background: #000; border-radius: 10px; overflow: hidden; border: 1px solid #334155; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+  .video-player-box video { width: 100%; display: block; max-height: 560px; outline: none; }
+
   .admin-qs { font-size: 0.82rem; color: #cbd5e1; line-height: 1.6; }
   .admin-qs li { margin-bottom: 0.4rem; padding-left: 0.5rem; }
   .pros-q { color: #4ade80; }
@@ -371,19 +441,20 @@ const html = `<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- VIDEO RECORDINGS -->
+  <!-- VIDEO RECORDINGS INTERACTIVE PLAYER -->
   <div class="section">
-    <h2>🎥 Video Recordings</h2>
-    ${videoFiles.length > 0 ? `
-    <p style="color:#94a3b8; font-size:0.85rem; margin-bottom:1rem">${videoFiles.length} of 12 video sessions captured</p>
-    <div class="video-grid">
-      ${videoFiles.map((f) => `
-        <div class="video-card">
-          <div>🎬</div>
-          <div class="video-name">${f}</div>
-        </div>`).join('')}
-    </div>` : `
-    <p style="color:#64748b">Video files will be listed here after test execution. Check <code>scenario-6-report/videos/</code></p>`}
+    <h2>🎥 Video Recordings & Session Playback (12 Sessions)</h2>
+    <p style="color:#94a3b8; font-size:0.85rem; margin-bottom:1.25rem">
+      Full continuous high-definition video recordings captured across all 12 user browser sessions (4 Participants + 8 Guest Viewers). Click any user tab below to switch and stream the session video:
+    </p>
+
+    <!-- User Selection Tabs -->
+    <div class="video-tabs-container">
+      ${videoTabsHtml}
+    </div>
+
+    <!-- Active Video Player Panes -->
+    ${videoPanesHtml}
   </div>
 
 </div>
@@ -399,6 +470,24 @@ function showTab(tabId, btn) {
   document.getElementById(tabId).classList.add('active');
   btn.classList.add('active');
 }
+
+function switchVideoTab(userId, btn) {
+  // Pause any currently playing videos
+  document.querySelectorAll('video').forEach((v) => {
+    try { v.pause(); } catch(e) {}
+  });
+
+  document.querySelectorAll('.video-pane').forEach((p) => p.classList.remove('active'));
+  document.querySelectorAll('.video-tab-btn').forEach((b) => b.classList.remove('active'));
+
+  const targetPane = document.getElementById('pane-' + userId);
+  if (targetPane) {
+    targetPane.classList.add('active');
+  }
+  if (btn) {
+    btn.classList.add('active');
+  }
+}
 </script>
 </body>
 </html>`;
@@ -406,6 +495,11 @@ function showTab(tabId, btn) {
 const outputPath = path.join(reportDir, 'all-in-one-report.html');
 fs.writeFileSync(outputPath, html);
 console.log(`✅ Scenario 6 HTML report generated: ${outputPath}`);
+
+// Also copy to standalone name
+const standalonePath = path.join(reportDir, 'Scenario 4 with Survey (2 oppose + 2 pros)  - 4 + 4participants.html');
+fs.writeFileSync(standalonePath, html);
+console.log(`✅ Scenario 6 standalone report updated: ${standalonePath}`);
 
 // Also copy to root
 const rootOutputPath = path.join(__dirname, 'scenario-6-all-in-one-report.html');
