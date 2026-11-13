@@ -1016,8 +1016,8 @@
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-label">Verified Workflows</div>
-        <div class="stat-value">6</div>
-        <div class="stat-desc">Admin Portal, Scenarios 2, 3, 4, 5 & 7</div>
+        <div class="stat-value">5</div>
+        <div class="stat-desc">Admin Portal, Scenarios 3, 4, 5 & 7</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Suite Pass Rate</div>
@@ -1026,7 +1026,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-label">Simulated Browser Sessions</div>
-        <div class="stat-value">53</div>
+        <div class="stat-value">49</div>
         <div class="stat-desc">Parallel authenticated user sessions</div>
       </div>
       <div class="stat-card">
@@ -1042,9 +1042,9 @@
         <span>📋</span> Verified Test Reports
       </h2>
       <div class="filter-tabs">
-        <button class="filter-btn active" onclick="filterCards('all', this)">All Workflows (6)</button>
+        <button class="filter-btn active" onclick="filterCards('all', this)">All Workflows (5)</button>
         <button class="filter-btn" onclick="filterCards('admin', this)">Admin Panel (1)</button>
-        <button class="filter-btn" onclick="filterCards('public', this)">Public Portal (5)</button>
+        <button class="filter-btn" onclick="filterCards('public', this)">Public Portal (4)</button>
       </div>
     </div>
 
@@ -1216,39 +1216,6 @@
         </div>
       </div>
 
-      <!-- CARD 5: SCENARIO 2 -->
-      <div class="scenario-card" data-category="public">
-        <div class="card-top">
-          <div class="card-header-row">
-            <span class="workflow-pill">🤝 SCENARIO 02</span>
-            <span class="badge-status">PASSED</span>
-          </div>
-          <div class="card-tags">
-            <span class="tag tag-scope">4 Participants</span>
-            <span class="tag tag-viewpoint">Agree Survey</span>
-            <span class="tag tag-rounds">5 Rounds</span>
-          </div>
-          <h3 class="scenario-title">Core Meeting & Survey Completion Workflow</h3>
-          <p class="scenario-desc">
-            4 Participants (Creator + 3 Members). Validates survey answering with Agree responses, participant interactions (token transfers, emojis), and round transitions to leaderboard.
-          </p>
-          <div class="scenario-article">
-            <div class="scenario-article-label">Target Article</div>
-            <div class="scenario-article-title">Coffee’s New Status Symbol Is a Machine Without Plastic</div>
-          </div>
-          <ul class="key-points">
-            <li><span>All 4 participants answer Agree responses & submit survey</span></li>
-            <li><span>Round badges, token awards & progression verified</span></li>
-            <li><span>All 5 user session videos recorded & playable</span></li>
-          </ul>
-        </div>
-        <div class="card-actions">
-          <a class="btn btn-primary" href="Scenario 2 report/Scenario 2 with survey agree  - 4 participants.html">View Report →</a>
-          <a class="btn btn-secondary" href="Scenario 2 report/index.html">Trace</a>
-          <button class="btn btn-rerun" onclick="openRerunModal('scenario-2', 'Scenario 2: Core Meeting (4 Users)')">⚡ Re-Run</button>
-        </div>
-      </div>
-
     </div>
   </main>
 
@@ -1276,7 +1243,6 @@
             <option value="scenario-5">Scenario 5: 100% Support Viewpoint (12 Users, Only Pros)</option>
             <option value="scenario-4">Scenario 4: 100% Oppose Viewpoint (8 Users, Only Oppose)</option>
             <option value="scenario-3">Scenario 3: Survey Skip & Role Allocation (8 Users)</option>
-            <option value="scenario-2">Scenario 2: Core Meeting & Agree Survey (4 Users)</option>
           </select>
         </div>
 
@@ -1382,10 +1348,6 @@
       'scenario-3': {
         title: 'Scenario 3: Survey Skip & Role Allocation (8 Users)',
         cli: 'npm run test:scenario-3 && npm run report:scenario-3-html'
-      },
-      'scenario-2': {
-        title: 'Scenario 2: Core Meeting & Agree Survey (4 Users)',
-        cli: 'npm run test:scenario-2 && npm run report:scenario-2-html'
       }
     };
 
