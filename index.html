@@ -1016,8 +1016,8 @@
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-label">Verified Workflows</div>
-        <div class="stat-value">5</div>
-        <div class="stat-desc">Admin Portal, Scenarios 2, 3, 4 & 5</div>
+        <div class="stat-value">6</div>
+        <div class="stat-desc">Admin Portal, Scenarios 2, 3, 4, 5 & 7</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Suite Pass Rate</div>
@@ -1026,7 +1026,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-label">Simulated Browser Sessions</div>
-        <div class="stat-value">37</div>
+        <div class="stat-value">53</div>
         <div class="stat-desc">Parallel authenticated user sessions</div>
       </div>
       <div class="stat-card">
@@ -1042,9 +1042,9 @@
         <span>📋</span> Verified Test Reports
       </h2>
       <div class="filter-tabs">
-        <button class="filter-btn active" onclick="filterCards('all', this)">All Workflows (5)</button>
+        <button class="filter-btn active" onclick="filterCards('all', this)">All Workflows (6)</button>
         <button class="filter-btn" onclick="filterCards('admin', this)">Admin Panel (1)</button>
-        <button class="filter-btn" onclick="filterCards('public', this)">Public Portal (4)</button>
+        <button class="filter-btn" onclick="filterCards('public', this)">Public Portal (5)</button>
       </div>
     </div>
 
@@ -1081,6 +1081,39 @@
           <a class="btn btn-primary" href="admin-test-report/all-in-one-report.html">View Report →</a>
           <a class="btn btn-secondary" href="admin-test-report/index.html">Trace</a>
           <button class="btn btn-rerun" onclick="openRerunModal('admin', 'Admin Portal Workflow')">⚡ Re-Run</button>
+        </div>
+      </div>
+
+      <!-- CARD 2: SCENARIO 7 -->
+      <div class="scenario-card" data-category="public">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="workflow-pill">🌟 SCENARIO 07</span>
+            <span class="badge-status">PASSED</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-scope">16 Users (4P + 12G)</span>
+            <span class="tag tag-viewpoint">Mixed Perspective</span>
+            <span class="tag tag-rounds">3 Rounds (21 Qs)</span>
+          </div>
+          <h3 class="scenario-title">Mixed Perspective E2E Testing with 4 Participants and 12 Guest Viewers</h3>
+          <p class="scenario-desc">
+            Complete validation of an existing chatroom: 16 sequential authenticated users, 2 Support + 2 Oppose participants, 12 guest viewers with live leave/rejoin count tracking, strict permission lockdown, cross-perspective chats, agree, points, and mixed questions.
+          </p>
+          <div class="scenario-article">
+            <div class="scenario-article-label">Target Article & Existing Chatroom</div>
+            <div class="scenario-article-title">Iron Man Preps Fans For Civil War 3 (Room: QA_Dom_4922)</div>
+          </div>
+          <ul class="key-points">
+            <li><span>16 users: 4 Participants (2 Support + 2 Oppose) & 12 Guest Viewers</span></li>
+            <li><span>Guest permissions verified (12 count badge, live leave/rejoin, lockdown)</span></li>
+            <li><span>Mixed questions, cross-perspective messaging, Agree & points verified</span></li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="scenario-7-report/all-in-one-report.html">View Report →</a>
+          <a class="btn btn-secondary" href="scenario-7-report/all-in-one-report.html#videos-panel">Videos (16)</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-7', 'Scenario 7: Mixed Perspective (16 Users)')">⚡ Re-Run</button>
         </div>
       </div>
 
@@ -1239,6 +1272,7 @@
           <label class="form-label">Select Target Workflow:</label>
           <select id="scenarioSelect" class="form-select" onchange="onScenarioChange(this.value)">
             <option value="admin">Admin Portal Workflow (AI Prompts & Round Distribution)</option>
+            <option value="scenario-7">Scenario 7: Mixed Perspective (16 Users - 4P + 12G)</option>
             <option value="scenario-5">Scenario 5: 100% Support Viewpoint (12 Users, Only Pros)</option>
             <option value="scenario-4">Scenario 4: 100% Oppose Viewpoint (8 Users, Only Oppose)</option>
             <option value="scenario-3">Scenario 3: Survey Skip & Role Allocation (8 Users)</option>
@@ -1332,6 +1366,10 @@
       'admin': {
         title: 'Admin Portal Workflow (AI Prompts & Configuration)',
         cli: 'npm run test:admin && npm run report:admin-html'
+      },
+      'scenario-7': {
+        title: 'Scenario 7: Mixed Perspective (16 Users - 4P + 12G)',
+        cli: 'npm run test:scenario-7 && npm run report:scenario-7-html'
       },
       'scenario-5': {
         title: 'Scenario 5: 100% Support Viewpoint (12 Users)',

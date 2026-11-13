@@ -11,12 +11,14 @@
     "test:scenario-4": "playwright test --config=playwright.scenario-4.config.ts",
     "test:scenario-5": "playwright test --config=playwright.scenario-5.config.ts",
     "test:scenario-6": "playwright test --config=playwright.scenario-6.config.ts",
+    "test:scenario-7": "playwright test --config=playwright.scenario-7.config.ts",
     "report:admin-html": "node generate-admin-html-report.js",
     "report:scenario-2-html": "node generate-public-portal-html-report.js",
     "report:scenario-3-html": "node generate-scenario-3-html-report.js",
     "report:scenario-4-html": "node generate-scenario-4-html-report.js",
     "report:scenario-5-html": "node generate-scenario-5-html-report.js",
-    "report:scenario-6-html": "node generate-scenario-6-html-report.js"
+    "report:scenario-6-html": "node generate-scenario-6-html-report.js",
+    "report:scenario-7-html": "node generate-scenario-7-html-report.js"
   },
   "keywords": [
     "playwright",
