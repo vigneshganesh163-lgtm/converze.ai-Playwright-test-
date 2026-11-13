@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Converze.AI — Test Results & Reports Portal</title>
+  <title>Converze.AI — Automated Test Results & QA Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #090d16;
-      --card-bg: #111827;
-      --card-border: #1f2937;
-      --card-hover: #1e293b;
+      --bg-surface: #0f172a;
+      --card-bg: rgba(17, 24, 39, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(99, 102, 241, 0.5);
       --text: #f3f4f6;
-      --text-muted: #9ca3af;
+      --text-muted: #94a3b8;
       --accent: #6366f1;
       --accent-hover: #4f46e5;
+      --accent-glow: rgba(99, 102, 241, 0.25);
       --success: #10b981;
       --success-bg: rgba(16, 185, 129, 0.12);
+      --success-border: rgba(16, 185, 129, 0.3);
       --warning: #f59e0b;
       --primary: #3b82f6;
       --purple: #8b5cf6;
@@ -35,6 +38,10 @@
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
+      background-attachment: fixed;
       color: var(--text);
       line-height: 1.5;
       min-height: 100vh;
@@ -42,31 +49,98 @@
       flex-direction: column;
     }
 
-    /* HEADER */
-    header {
-      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
-      border-bottom: 1px solid #1e293b;
-      padding: 3rem 1.5rem 2.5rem;
-      position: relative;
-      overflow: hidden;
+    /* TOP NAVBAR */
+    .top-nav {
+      background: rgba(11, 15, 25, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.85rem 1.5rem;
     }
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
-      pointer-events: none;
+    .nav-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+    }
+
+    .brand-text {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .nav-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.15s;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    /* HEADER / HERO */
+    header {
+      background: linear-gradient(180deg, rgba(30, 27, 75, 0.5) 0%, rgba(15, 23, 42, 0) 100%);
+      padding: 3rem 1.5rem 2.5rem;
+      position: relative;
     }
 
     .header-content {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
     }
 
     .header-flex {
@@ -81,7 +155,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(16, 185, 129, 0.12);
       border: 1px solid rgba(16, 185, 129, 0.3);
       color: #34d399;
       font-size: 0.75rem;
@@ -113,22 +187,22 @@
       font-weight: 800;
       letter-spacing: -0.025em;
       margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #fff;
+      line-height: 1.2;
     }
 
     .subtitle {
       color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 750px;
+      font-size: 1.025rem;
+      max-width: 760px;
+      line-height: 1.6;
     }
 
     /* MAIN CONTAINER */
     main {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
+      padding: 1.5rem 1.5rem 4rem;
       flex: 1;
       width: 100%;
     }
@@ -136,7 +210,7 @@
     /* STATS GRID */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.25rem;
       margin-bottom: 3rem;
     }
@@ -147,23 +221,45 @@
       border-radius: 14px;
       padding: 1.5rem;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
     }
 
     .stat-label {
       color: var(--text-muted);
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.8rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       margin-bottom: 0.5rem;
     }
 
     .stat-value {
-      font-size: 2rem;
+      font-size: 2.15rem;
       font-weight: 800;
       color: #fff;
       line-height: 1.2;
       margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .stat-desc {
@@ -171,231 +267,352 @@
       font-size: 0.85rem;
     }
 
-    /* SECTION HEADER */
+    /* SECTION HEADER & FILTER BAR */
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.75rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .section-title {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 0.35rem;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.825rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover {
       color: #fff;
     }
 
-    /* SCENARIO CARDS GRID */
-    .scenario-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 1.75rem;
+    .filter-btn.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
     }
 
+    /* UNIFORM SCENARIO GRID */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 1.75rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 768px) {
+      .scenario-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* STANDARDIZED UNIFORM CARD */
     .scenario-card {
-      background: var(--card-bg);
+      background: linear-gradient(180deg, rgba(23, 30, 48, 0.8) 0%, rgba(13, 19, 32, 0.95) 100%);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-      transition: all 0.2s ease-in-out;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s, box-shadow 0.25s;
+      position: relative;
     }
 
     .scenario-card:hover {
-      border-color: rgba(99, 102, 241, 0.4);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 20px -3px rgba(0, 0, 0, 0.4);
+      border-color: var(--card-hover-border);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(99, 102, 241, 0.12);
     }
 
+    /* CARD INNER SECTIONS WITH FIXED PROPORTIONS */
     .card-top {
-      padding: 1.75rem 1.75rem 1.25rem;
+      padding: 1.6rem 1.6rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
+    /* Header Row (Pill + Status) */
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+      height: 28px;
+    }
+
+    .workflow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.725rem;
+      font-weight: 700;
+      color: #a5b4fc;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--success-bg);
+      color: #34d399;
+      border: 1px solid var(--success-border);
+      font-size: 0.725rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #10b981;
+    }
+
+    /* Card Tags (Exactly 1 row) */
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
+      gap: 0.45rem;
+      margin-bottom: 1.1rem;
+      min-height: 26px;
     }
 
     .tag {
-      font-size: 0.75rem;
+      font-size: 0.725rem;
       font-weight: 600;
-      padding: 0.25rem 0.65rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
+      letter-spacing: 0.02em;
     }
 
-    .tag-passed {
-      background: var(--success-bg);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-
-    .tag-users {
-      background: rgba(99, 102, 241, 0.12);
-      color: #a5b4fc;
-      border: 1px solid rgba(99, 102, 241, 0.3);
+    .tag-scope {
+      background: rgba(59, 130, 246, 0.12);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.25);
     }
 
     .tag-viewpoint {
       background: rgba(245, 158, 11, 0.12);
       color: #fcd34d;
-      border: 1px solid rgba(245, 158, 11, 0.3);
+      border: 1px solid rgba(245, 158, 11, 0.25);
     }
 
     .tag-rounds {
       background: rgba(139, 92, 246, 0.12);
       color: #c4b5fd;
-      border: 1px solid rgba(139, 92, 246, 0.3);
+      border: 1px solid rgba(139, 92, 246, 0.25);
     }
 
-    .scenario-number {
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.35rem;
-    }
-
+    /* Fixed Height Title (Exactly 2 Lines) */
     .scenario-title {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 0.75rem;
       line-height: 1.35;
-    }
-
-    .scenario-desc {
-      color: var(--text-muted);
-      font-size: 0.925rem;
-      line-height: 1.55;
-      margin-bottom: 1.25rem;
-    }
-
-    .scenario-article {
-      background: rgba(255, 255, 255, 0.03);
-      border-left: 3px solid var(--accent);
-      padding: 0.75rem 1rem;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 1.25rem;
-    }
-
-    .scenario-article-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 600;
-      letter-spacing: 0.05em;
-    }
-
-    .scenario-article-title {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #e2e8f0;
-      margin-top: 0.2rem;
+      margin-bottom: 0.65rem;
+      height: 48px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
 
+    /* Fixed Height Description (Exactly 3 Lines) */
+    .scenario-desc {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      height: 60px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Standardized Meta Target Box (Exactly 64px) */
+    .scenario-article {
+      background: rgba(15, 23, 42, 0.6);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.85rem;
+      margin-bottom: 1.1rem;
+      height: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      border-right: 1px solid rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .scenario-article-label {
+      font-size: 0.675rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .scenario-article-title {
+      font-size: 0.825rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      margin-top: 0.15rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Key Points Checklist (Exactly 3 items, 76px) */
     .key-points {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      font-size: 0.85rem;
+      justify-content: space-between;
+      height: 76px;
+      font-size: 0.815rem;
       color: #cbd5e1;
     }
 
     .key-points li {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .key-points li::before {
       content: '✓';
       color: var(--success);
       font-weight: 800;
+      font-size: 0.85rem;
       flex-shrink: 0;
     }
 
-    /* CARD ACTIONS */
+    .key-points li span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* STANDARDIZED CARD ACTION BAR (PINNED TO BOTTOM, 64px) */
     .card-actions {
-      padding: 1.25rem 1.75rem;
-      background: rgba(0, 0, 0, 0.2);
-      border-top: 1px solid var(--card-border);
+      padding: 1rem 1.6rem;
+      background: rgba(11, 15, 25, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
+      gap: 0.6rem;
+      align-items: center;
+      height: 64px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      padding: 0.65rem 1.15rem;
+      gap: 0.4rem;
+      padding: 0.6rem 0.95rem;
       border-radius: 8px;
-      font-size: 0.875rem;
+      font-size: 0.825rem;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s;
       cursor: pointer;
       border: none;
+      white-space: nowrap;
+      height: 38px;
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
       color: #fff;
+      flex: 1;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
     }
 
     .btn-primary:hover {
-      background: var(--accent-hover);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+      background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.45);
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
       background: rgba(255, 255, 255, 0.05);
       color: #cbd5e1;
-      border: 1px solid var(--card-border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.1);
       color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
     .btn-rerun {
       background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%);
       color: #fb923c;
-      border: 1px solid rgba(249, 115, 22, 0.4);
+      border: 1px solid rgba(249, 115, 22, 0.35);
       font-weight: 700;
-      margin-left: auto;
     }
 
     .btn-rerun:hover {
       background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
       color: #fff;
       border-color: transparent;
-      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
       transform: translateY(-1px);
     }
 
     .btn-rerun-header {
       background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
       color: #fff;
-      padding: 0.85rem 1.5rem;
-      font-size: 0.95rem;
+      padding: 0.75rem 1.4rem;
+      font-size: 0.9rem;
       font-weight: 700;
       border-radius: 10px;
       border: none;
@@ -405,6 +622,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      height: 42px;
     }
 
     .btn-rerun-header:hover {
@@ -417,7 +635,7 @@
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
       z-index: 9999;
       display: none;
       align-items: center;
@@ -450,7 +668,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 1.75rem;
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.02);
     }
 
@@ -509,7 +727,7 @@
 
     .form-label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.825rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -525,7 +743,7 @@
       padding: 0.75rem 1rem;
       color: #f3f4f6;
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 0.925rem;
       outline: none;
       transition: border-color 0.2s;
     }
@@ -549,9 +767,9 @@
       border: none;
       color: #94a3b8;
       font-family: inherit;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      padding: 0.6rem 0.9rem;
+      padding: 0.55rem 0.85rem;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
@@ -584,14 +802,14 @@
     }
 
     .runner-box h4 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 0.35rem;
     }
 
     .runner-box p {
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       color: #94a3b8;
       line-height: 1.5;
     }
@@ -602,7 +820,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       width: 100%;
       padding: 0.85rem;
-      font-size: 0.95rem;
+      font-size: 0.925rem;
       font-weight: 700;
       border-radius: 10px;
     }
@@ -613,7 +831,7 @@
     }
 
     .runner-hint {
-      font-size: 0.825rem;
+      font-size: 0.8rem;
       color: #64748b;
       line-height: 1.45;
     }
@@ -636,7 +854,7 @@
     .code-block-wrapper pre {
       margin: 0;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.825rem;
       color: #38bdf8;
       overflow-x: auto;
       white-space: pre-wrap;
@@ -650,9 +868,9 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #cbd5e1;
-      font-size: 0.75rem;
+      font-size: 0.725rem;
       font-weight: 600;
-      padding: 0.35rem 0.65rem;
+      padding: 0.3rem 0.6rem;
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.15s;
@@ -693,7 +911,7 @@
     .dot.green { background: #10b981; }
 
     .terminal-title {
-      font-size: 0.75rem;
+      font-size: 0.725rem;
       color: #94a3b8;
       font-family: 'JetBrains Mono', monospace;
       margin-left: 0.5rem;
@@ -702,7 +920,7 @@
     .terminal-body {
       padding: 0.85rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.785rem;
+      font-size: 0.775rem;
       line-height: 1.45;
       max-height: 180px;
       overflow-y: auto;
@@ -723,7 +941,7 @@
       background: rgba(59, 130, 246, 0.12);
       border: 1px solid rgba(59, 130, 246, 0.3);
       color: #60a5fa;
-      font-size: 0.85rem;
+      font-size: 0.825rem;
       font-weight: 600;
       margin: 0.75rem 0;
     }
@@ -739,8 +957,8 @@
     /* FOOTER */
     footer {
       border-top: 1px solid var(--card-border);
-      background: #090d16;
-      padding: 2rem 1.5rem;
+      background: rgba(9, 13, 22, 0.95);
+      padding: 2.5rem 1.5rem;
       text-align: center;
       color: #64748b;
       font-size: 0.85rem;
@@ -758,19 +976,37 @@
 </head>
 <body>
 
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">C</div>
+        <span class="brand-text">CONVERZE.AI</span>
+        <span class="brand-tag">QA Suite</span>
+      </a>
+      <div class="nav-actions">
+        <a class="nav-link" href="https://github.com/vigneshganesh163-lgtm/converze.ai-Playwright-test-" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <button class="btn btn-rerun-header" onclick="openRerunModal('admin', 'Admin Portal Workflow')">
+          <span>⚡</span> Re-Run Suite
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
   <header>
     <div class="header-content">
       <div class="header-flex">
         <div>
-          <div class="badge-live">Live Automated Test Suite</div>
-          <h1>Converze.AI Public Portal Results</h1>
+          <div class="badge-live">Live QA Automation Dashboard</div>
+          <h1>Quality Assurance Test Reports</h1>
           <p class="subtitle">
-            Automated Playwright end-to-end multi-user test execution dashboard covering participant/guest role allotment, survey viewpoint classification, dynamic meeting progression, and critical question validation.
+            Automated multi-user Playwright test executions across the Converze.AI ecosystem. Full continuous video recordings, question delivery audits, dynamic role allotment, and real-time interaction benchmarks.
           </p>
         </div>
-        <button class="btn btn-rerun-header" onclick="openRerunModal('admin', 'Admin Portal Workflow')">
-          <span>⚡</span> Re-Run Test Suite
-        </button>
       </div>
     </div>
   </header>
@@ -779,12 +1015,12 @@
     <!-- OVERVIEW STATS -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-label">Total Workflows Tested</div>
+        <div class="stat-label">Verified Workflows</div>
         <div class="stat-value">5</div>
         <div class="stat-desc">Admin Portal, Scenarios 2, 3, 4 & 5</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Overall Test Status</div>
+        <div class="stat-label">Suite Pass Rate</div>
         <div class="stat-value" style="color: #34d399;">100% PASS</div>
         <div class="stat-desc">All verified workflows passing</div>
       </div>
@@ -800,165 +1036,183 @@
       </div>
     </div>
 
-    <!-- SCENARIOS SECTION -->
+    <!-- SECTION HEADER & FILTERS -->
     <div class="section-header">
-      <h2 class="section-title">Test Reports & Execution Summaries</h2>
+      <h2 class="section-title">
+        <span>📋</span> Verified Test Reports
+      </h2>
+      <div class="filter-tabs">
+        <button class="filter-btn active" onclick="filterCards('all', this)">All Workflows (5)</button>
+        <button class="filter-btn" onclick="filterCards('admin', this)">Admin Panel (1)</button>
+        <button class="filter-btn" onclick="filterCards('public', this)">Public Portal (4)</button>
+      </div>
     </div>
 
+    <!-- STANDARDIZED UNIFORM SCENARIO GRID -->
     <div class="scenario-grid">
 
-      <!-- ADMIN PORTAL WORKFLOW -->
-      <div class="scenario-card">
+      <!-- CARD 1: ADMIN PORTAL WORKFLOW -->
+      <div class="scenario-card" data-category="admin">
         <div class="card-top">
+          <div class="card-header-row">
+            <span class="workflow-pill">🛠️ WORKFLOW 01</span>
+            <span class="badge-status">PASSED</span>
+          </div>
           <div class="card-tags">
-            <span class="tag tag-passed">PASSED</span>
-            <span class="tag tag-users">Admin Portal</span>
+            <span class="tag tag-scope">Admin Panel</span>
             <span class="tag tag-viewpoint">AI Prompts & Config</span>
             <span class="tag tag-rounds">3 & 5 Rounds Config</span>
           </div>
-          <div class="scenario-number">Admin Workflow</div>
           <h3 class="scenario-title">Admin Portal End-to-End Configuration & AI Question Curation</h3>
           <p class="scenario-desc">
-            Complete automated validation of the Converze.AI Admin Portal. Tests secure admin login, target article category navigation, AI prompt generation for Pros (30), Oppose (30) and Survey (10) questions, round distribution setup, and full database persistence verification.
+            Complete automated validation of the Admin Portal: JWT authentication, article category setup, AI prompt generation for 30 Pros + 30 Oppose + 10 Survey questions, and database persistence.
           </p>
           <div class="scenario-article">
-            <div class="scenario-article-label">Target Portal</div>
-            <div class="scenario-article-title">https://admin.thedevdemo.in/ — Dashboard & Article AI Configuration</div>
+            <div class="scenario-article-label">Target Portal & Scope</div>
+            <div class="scenario-article-title">admin.thedevdemo.in — AI Question Generation & Persistence</div>
           </div>
           <ul class="key-points">
-            <li>Admin authentication & JWT session persistence verified</li>
-            <li>Generated & saved 30 Pros + 30 Oppose + 10 Survey questions</li>
-            <li>Round distribution configuration and database persistence audited</li>
+            <li><span>Admin JWT session & dashboard authorization verified</span></li>
+            <li><span>30 Pros + 30 Oppose + 10 Survey questions generated</span></li>
+            <li><span>Round distribution configuration saved to database</span></li>
           </ul>
         </div>
         <div class="card-actions">
-          <a class="btn btn-primary" href="admin-test-report/all-in-one-report.html">View Admin Report →</a>
-          <a class="btn btn-secondary" href="admin-test-report/index.html">View Playwright Trace</a>
-          <button class="btn btn-rerun" onclick="openRerunModal('admin', 'Admin Portal Workflow')">⚡ Re-Run Test</button>
+          <a class="btn btn-primary" href="admin-test-report/all-in-one-report.html">View Report →</a>
+          <a class="btn btn-secondary" href="admin-test-report/index.html">Trace</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('admin', 'Admin Portal Workflow')">⚡ Re-Run</button>
         </div>
       </div>
 
-      <!-- SCENARIO 5 -->
-      <div class="scenario-card">
+      <!-- CARD 2: SCENARIO 5 -->
+      <div class="scenario-card" data-category="public">
         <div class="card-top">
+          <div class="card-header-row">
+            <span class="workflow-pill">🎯 SCENARIO 05</span>
+            <span class="badge-status">PASSED</span>
+          </div>
           <div class="card-tags">
-            <span class="tag tag-passed">PASSED</span>
-            <span class="tag tag-users">12 Users (4P + 8G)</span>
+            <span class="tag tag-scope">12 Users (4P + 8G)</span>
             <span class="tag tag-viewpoint">100% Support</span>
             <span class="tag tag-rounds">5 Rounds (30 Qs)</span>
           </div>
-          <div class="scenario-number">Scenario 5</div>
-          <h3 class="scenario-title">Support Survey Viewpoint (Only Pros Questions)</h3>
+          <h3 class="scenario-title">Support Survey Viewpoint (100% Pros Questions Audit)</h3>
           <p class="scenario-desc">
-            12 Users (4 Participants + 8 Guest Viewers). All 4 participants submit Support-aligned survey answers. Critical validation verifies that strictly 0 Oppose questions and only Pros questions appear across all rounds.
+            12 Users (4 Participants + 8 Guests). All 4 participants submit Support-aligned survey answers. Critical validation verifies that strictly 0 Oppose questions and only Pros questions appear.
           </p>
           <div class="scenario-article">
             <div class="scenario-article-label">Target Article</div>
             <div class="scenario-article-title">Tech needs legacy businesses to grow trillions into AI buildout</div>
           </div>
           <ul class="key-points">
-            <li>Critical Validation: 0 Oppose questions delivered (100% Pros verified)</li>
-            <li>Guest Permissions: Watch-only mode confirmed for all 8 guests</li>
-            <li>All 12 user video sessions recorded & copied</li>
+            <li><span>Critical Validation: 0 Oppose questions (100% Pros verified)</span></li>
+            <li><span>Guest Permissions: Watch-only mode confirmed for 8 guests</span></li>
+            <li><span>All 12 user video sessions recorded & playable</span></li>
           </ul>
         </div>
         <div class="card-actions">
-          <a class="btn btn-primary" href="scenario-5-report/all-in-one-report.html">View Scenario 5 Report →</a>
-          <a class="btn btn-secondary" href="scenario-5-report/scenario-5-execution-summary.json">Download JSON</a>
-          <button class="btn btn-rerun" onclick="openRerunModal('scenario-5', 'Scenario 5: 100% Support (12 Users)')">⚡ Re-Run Test</button>
+          <a class="btn btn-primary" href="scenario-5-report/all-in-one-report.html">View Report →</a>
+          <a class="btn btn-secondary" href="scenario-5-report/scenario-5-execution-summary.json">JSON</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-5', 'Scenario 5: 100% Support (12 Users)')">⚡ Re-Run</button>
         </div>
       </div>
 
-      <!-- SCENARIO 4 -->
-      <div class="scenario-card">
+      <!-- CARD 3: SCENARIO 4 -->
+      <div class="scenario-card" data-category="public">
         <div class="card-top">
+          <div class="card-header-row">
+            <span class="workflow-pill">⚖️ SCENARIO 04</span>
+            <span class="badge-status">PASSED</span>
+          </div>
           <div class="card-tags">
-            <span class="tag tag-passed">PASSED</span>
-            <span class="tag tag-users">8 Users (4P + 4G)</span>
+            <span class="tag tag-scope">8 Users (4P + 4G)</span>
             <span class="tag tag-viewpoint">100% Oppose</span>
             <span class="tag tag-rounds">5 Rounds (30 Qs)</span>
           </div>
-          <div class="scenario-number">Scenario 4</div>
-          <h3 class="scenario-title">Oppose Survey Viewpoint (Only Oppose Questions)</h3>
+          <h3 class="scenario-title">Oppose Survey Viewpoint (100% Oppose Questions Audit)</h3>
           <p class="scenario-desc">
-            8 Users (4 Participants + 4 Guest Viewers). All 4 participants submit Oppose-aligned survey answers. Critical validation ensures that strictly 0 Pros questions and only Oppose questions appear throughout the meeting.
+            8 Users (4 Participants + 4 Guests). All 4 participants submit Oppose-aligned survey answers. Critical validation ensures strictly 0 Pros questions and only Oppose questions appear.
           </p>
           <div class="scenario-article">
             <div class="scenario-article-label">Target Article</div>
             <div class="scenario-article-title">Coffee’s New Status Symbol Is a Machine Without Plastic</div>
           </div>
           <ul class="key-points">
-            <li>Critical Validation: 0 Pros questions delivered (100% Oppose verified)</li>
-            <li>Guest Count: 4 Guests badge & dynamic leave/rejoin verified</li>
-            <li>Participant role exclusivity verified across speaking turns</li>
+            <li><span>Critical Validation: 0 Pros questions (100% Oppose verified)</span></li>
+            <li><span>Guest Count: 4 Guests badge & dynamic leave/rejoin verified</span></li>
+            <li><span>All 8 user video sessions recorded & playable</span></li>
           </ul>
         </div>
         <div class="card-actions">
-          <a class="btn btn-primary" href="scenario-4-report/all-in-one-report.html">View Scenario 4 Report →</a>
-          <a class="btn btn-secondary" href="scenario-4-report/Scenario 4 with Survey (oppose)  - 4 + 4participants.html">View Standalone</a>
-          <button class="btn btn-rerun" onclick="openRerunModal('scenario-4', 'Scenario 4: 100% Oppose (8 Users)')">⚡ Re-Run Test</button>
+          <a class="btn btn-primary" href="scenario-4-report/all-in-one-report.html">View Report →</a>
+          <a class="btn btn-secondary" href="scenario-4-report/Scenario 4 with Survey (oppose)  - 4 + 4participants.html">Standalone</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-4', 'Scenario 4: 100% Oppose (8 Users)')">⚡ Re-Run</button>
         </div>
       </div>
 
-      <!-- SCENARIO 3 -->
-      <div class="scenario-card">
+      <!-- CARD 4: SCENARIO 3 -->
+      <div class="scenario-card" data-category="public">
         <div class="card-top">
+          <div class="card-header-row">
+            <span class="workflow-pill">⏩ SCENARIO 03</span>
+            <span class="badge-status">PASSED</span>
+          </div>
           <div class="card-tags">
-            <span class="tag tag-passed">PASSED</span>
-            <span class="tag tag-users">8 Users (4P + 4G)</span>
+            <span class="tag tag-scope">8 Users (4P + 4G)</span>
             <span class="tag tag-viewpoint">Skip Survey</span>
             <span class="tag tag-rounds">5 Rounds</span>
           </div>
-          <div class="scenario-number">Scenario 3</div>
-          <h3 class="scenario-title">Survey Skip & Guest Role Verification</h3>
+          <h3 class="scenario-title">Survey Skip Flow & Dynamic Role Allocation</h3>
           <p class="scenario-desc">
-            8 Users (4 Participants + 4 Guest Viewers). Validates the skip-survey flow, auto slot allocation (creator + 3 members into participants, remaining into guests), and guest badge updates.
+            8 Users (4 Participants + 4 Guests). Validates survey skip handling, auto slot allocation (creator + 3 members into participants, remaining into guests), and guest badge updates.
           </p>
           <div class="scenario-article">
             <div class="scenario-article-label">Target Article</div>
             <div class="scenario-article-title">Coffee’s New Status Symbol Is a Machine Without Plastic</div>
           </div>
           <ul class="key-points">
-            <li>Survey skip option handled cleanly across all participants</li>
-            <li>Guest count decrement on leave & restore on rejoin verified</li>
-            <li>Leaderboard screen reached at meeting conclusion</li>
+            <li><span>Survey skip option handled cleanly across all participants</span></li>
+            <li><span>Guest count decrement on leave & restore on rejoin verified</span></li>
+            <li><span>All 8 user video sessions recorded & playable</span></li>
           </ul>
         </div>
         <div class="card-actions">
-          <a class="btn btn-primary" href="scenario-3-report/all-in-one-report.html">View Scenario 3 Report →</a>
-          <a class="btn btn-secondary" href="scenario-3-report/Scenario 3 with skip survey  - 4 + 4participants.html">View Standalone</a>
-          <button class="btn btn-rerun" onclick="openRerunModal('scenario-3', 'Scenario 3: Survey Skip & Role Allotment (8 Users)')">⚡ Re-Run Test</button>
+          <a class="btn btn-primary" href="scenario-3-report/all-in-one-report.html">View Report →</a>
+          <a class="btn btn-secondary" href="scenario-3-report/Scenario 3 with skip survey  - 4 + 4participants.html">Standalone</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-3', 'Scenario 3: Survey Skip & Role Allotment (8 Users)')">⚡ Re-Run</button>
         </div>
       </div>
 
-      <!-- SCENARIO 2 -->
-      <div class="scenario-card">
+      <!-- CARD 5: SCENARIO 2 -->
+      <div class="scenario-card" data-category="public">
         <div class="card-top">
+          <div class="card-header-row">
+            <span class="workflow-pill">🤝 SCENARIO 02</span>
+            <span class="badge-status">PASSED</span>
+          </div>
           <div class="card-tags">
-            <span class="tag tag-passed">PASSED</span>
-            <span class="tag tag-users">4 Participants</span>
+            <span class="tag tag-scope">4 Participants</span>
             <span class="tag tag-viewpoint">Agree Survey</span>
             <span class="tag tag-rounds">5 Rounds</span>
           </div>
-          <div class="scenario-number">Scenario 2</div>
-          <h3 class="scenario-title">Core Meeting & Survey Completion</h3>
+          <h3 class="scenario-title">Core Meeting & Survey Completion Workflow</h3>
           <p class="scenario-desc">
-            4 Participants (Creator + 3 Members). Validates survey answering with Agree responses, participant interactions (token transfers, emojis), and round transitions through to the final leaderboard.
+            4 Participants (Creator + 3 Members). Validates survey answering with Agree responses, participant interactions (token transfers, emojis), and round transitions to leaderboard.
           </p>
           <div class="scenario-article">
             <div class="scenario-article-label">Target Article</div>
             <div class="scenario-article-title">Coffee’s New Status Symbol Is a Machine Without Plastic</div>
           </div>
           <ul class="key-points">
-            <li>All 4 participants answer Agree responses and submit</li>
-            <li>Round badge and question progression verified</li>
-            <li>Tokens and points awarded and verified in UI</li>
+            <li><span>All 4 participants answer Agree responses & submit survey</span></li>
+            <li><span>Round badges, token awards & progression verified</span></li>
+            <li><span>All 5 user session videos recorded & playable</span></li>
           </ul>
         </div>
         <div class="card-actions">
-          <a class="btn btn-primary" href="Scenario 2 report/Scenario 2 with survey agree  - 4 participants.html">View Scenario 2 Report →</a>
-          <a class="btn btn-secondary" href="Scenario 2 report/index.html">View Playwright Trace</a>
-          <button class="btn btn-rerun" onclick="openRerunModal('scenario-2', 'Scenario 2: Core Meeting (4 Users)')">⚡ Re-Run Test</button>
+          <a class="btn btn-primary" href="Scenario 2 report/Scenario 2 with survey agree  - 4 participants.html">View Report →</a>
+          <a class="btn btn-secondary" href="Scenario 2 report/index.html">Trace</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-2', 'Scenario 2: Core Meeting (4 Users)')">⚡ Re-Run</button>
         </div>
       </div>
 
@@ -973,7 +1227,7 @@
           <div class="modal-icon">⚡</div>
           <div>
             <h3 class="modal-title">Re-Run Playwright Test</h3>
-            <p class="modal-subtitle" id="modalScenarioSubtitle">Scenario 6: Mixed Viewpoint (12 Users)</p>
+            <p class="modal-subtitle" id="modalScenarioSubtitle">Admin Portal Workflow</p>
           </div>
         </div>
         <button class="modal-close" onclick="closeRerunModal()">&times;</button>
@@ -982,7 +1236,7 @@
       <div class="modal-body">
         <!-- Scenario Selector -->
         <div class="form-group">
-          <label class="form-label">Select Target Scenario:</label>
+          <label class="form-label">Select Target Workflow:</label>
           <select id="scenarioSelect" class="form-select" onchange="onScenarioChange(this.value)">
             <option value="admin">Admin Portal Workflow (AI Prompts & Round Distribution)</option>
             <option value="scenario-5">Scenario 5: 100% Support Viewpoint (12 Users, Only Pros)</option>
@@ -1053,7 +1307,7 @@
             <h4>Run Locally in Terminal</h4>
             <p>To execute locally with live browser windows or screencast capture, run this command:</p>
             <div class="code-block-wrapper">
-              <pre><code id="cliCommandText">npm run test:scenario-6 && npm run report:scenario-6-html</code></pre>
+              <pre><code id="cliCommandText">npm run test:admin && npm run report:admin-html</code></pre>
               <button class="btn-copy" id="copyBtn" onclick="copyCliCommand()">📋 Copy</button>
             </div>
             <div class="runner-hint" style="margin-top: 0.75rem;">
@@ -1096,6 +1350,20 @@
         cli: 'npm run test:scenario-2 && npm run report:scenario-2-html'
       }
     };
+
+    function filterCards(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.scenario-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
 
     function openRerunModal(scenario, title) {
       activeScenario = scenario || 'admin';
