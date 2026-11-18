@@ -1,33 +1,47 @@
 {
-  "name": "converze-ai-test-reports-portal",
-  "version": "1.0.0",
-  "description": "Converze.AI Automated Playwright Test Suite Results & Live Runner Portal",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test:admin": "playwright test --config=playwright.admin.config.ts",
-    "test:scenario-2": "playwright test --config=playwright.public-portal.config.ts",
-    "test:scenario-3": "playwright test --config=playwright.scenario-3.config.ts",
-    "test:scenario-4": "playwright test --config=playwright.scenario-4.config.ts",
-    "test:scenario-5": "playwright test --config=playwright.scenario-5.config.ts",
-    "test:scenario-6": "playwright test --config=playwright.scenario-6.config.ts",
-    "test:scenario-7": "playwright test --config=playwright.scenario-7.config.ts",
-    "report:admin-html": "node generate-admin-html-report.js",
-    "report:scenario-2-html": "node generate-public-portal-html-report.js",
-    "report:scenario-3-html": "node generate-scenario-3-html-report.js",
-    "report:scenario-4-html": "node generate-scenario-4-html-report.js",
-    "report:scenario-5-html": "node generate-scenario-5-html-report.js",
-    "report:scenario-6-html": "node generate-scenario-6-html-report.js",
-    "report:scenario-7-html": "node generate-scenario-7-html-report.js"
-  },
-  "keywords": [
-    "playwright",
-    "test-results",
-    "converze-ai"
-  ],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@playwright/test": "^1.49.0"
-  }
+    "name":  "converze.ai--playwright-test-new",
+    "version":  "1.0.0",
+    "description":  "",
+    "main":  "index.js",
+    "scripts":  {
+                    "test":  "playwright test",
+                    "test:survey":  "playwright test tests/article-survey --project=chromium",
+                    "test:chatroom":  "playwright test --config=playwright.chatroom.config.ts",
+                    "test:chatroom-ux":  "playwright test --config=playwright.chatroom-experience.config.ts",
+                    "test:participants":  "playwright test --config=playwright.participants.config.ts",
+                    "test:admin":  "playwright test --config=playwright.admin.config.ts",
+                    "test:public-portal":  "playwright test --config=playwright.public-portal.config.ts",
+                    "test:scenario-3":  "playwright test --config=playwright.scenario-3.config.ts",
+                    "test:scenario-4":  "playwright test --config=playwright.scenario-4.config.ts",
+                    "test:scenario-5":  "playwright test --config=playwright.scenario-5.config.ts",
+                    "report":  "playwright show-report",
+                    "report:chatroom":  "playwright show-report chatroom-report",
+                    "report:chatroom-ux":  "playwright show-report chatroom-experience-report",
+                    "report:participants":  "playwright show-report chatroom-participants-report",
+                    "report:admin":  "playwright show-report admin-test-report",
+                    "report:public-portal":  "playwright show-report public-portal-report",
+                    "report:scenario-3":  "playwright show-report scenario-3-report",
+                    "report:scenario-4":  "playwright show-report scenario-4-report",
+                    "report:scenario-5":  "playwright show-report scenario-5-report",
+                    "report:all-in-one":  "node -e \"const http=require(\u0027http\u0027),fs=require(\u0027fs\u0027),path=require(\u0027path\u0027); const server=http.createServer((req,res)=\u003e{ let reqPath=req.url===\u0027/\u0027?\u0027/all-in-one-report.html\u0027:req.url; const fPath=path.join(__dirname,\u0027chatroom-participants-report\u0027,decodeURIComponent(reqPath)); if(fs.existsSync(fPath)\u0026\u0026fs.statSync(fPath).isFile()){ const ext=path.extname(fPath); const mime=ext===\u0027.html\u0027?\u0027text/html\u0027:ext===\u0027.webm\u0027?\u0027video/webm\u0027:ext===\u0027.png\u0027?\u0027image/png\u0027:\u0027application/octet-stream\u0027; res.writeHead(200,{\u0027Content-Type\u0027:mime,\u0027Accept-Ranges\u0027:\u0027bytes\u0027}); fs.createReadStream(fPath).pipe(res); } else { res.writeHead(404); res.end(\u0027Not found\u0027); } }); server.listen(9325,()=\u003e{ console.log(\u0027All-in-One Report running at http://localhost:9325\u0027); });\"",
+                    "test:scenario-6":  "playwright test --config=playwright.scenario-6.config.ts",
+                    "report:scenario-6":  "playwright show-report scenario-6-playwright-report",
+                    "report:scenario-6-html":  "node generate-scenario-6-html-report.js",
+                    "test:scenario-7":  "playwright test --config=playwright.scenario-7.config.ts",
+                    "report:scenario-7":  "playwright show-report scenario-7-playwright-report",
+                    "report:scenario-7-html":  "node generate-scenario-7-html-report.js",
+                    "test:scenario-9":  "playwright test --config=playwright.scenario-9.config.ts",
+                    "report:scenario-9":  "playwright show-report scenario-9-playwright-report",
+                    "report:scenario-9-html":  "node generate-scenario-9-html-report.js"
+                },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "type":  "commonjs",
+    "devDependencies":  {
+                            "@playwright/test":  "^1.64.1",
+                            "@types/node":  "^26.6.6"
+                        }
 }

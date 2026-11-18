@@ -1016,8 +1016,8 @@
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-label">Verified Workflows</div>
-        <div class="stat-value">5</div>
-        <div class="stat-desc">Admin Portal, Scenarios 3, 4, 5 & 7</div>
+        <div class="stat-value">6</div>
+        <div class="stat-desc">Admin Portal, Scenarios 3, 4, 5, 7 & 9</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Suite Pass Rate</div>
@@ -1026,7 +1026,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-label">Simulated Browser Sessions</div>
-        <div class="stat-value">49</div>
+        <div class="stat-value">73</div>
         <div class="stat-desc">Parallel authenticated user sessions</div>
       </div>
       <div class="stat-card">
@@ -1084,7 +1084,40 @@
         </div>
       </div>
 
-      <!-- CARD 2: SCENARIO 7 -->
+      <!-- CARD 2: SCENARIO 9 -->
+      <div class="scenario-card" data-category="public">
+        <div class="card-top">
+          <div class="card-header-row">
+            <span class="workflow-pill">🚀 SCENARIO 09</span>
+            <span class="badge-status">PASSED</span>
+          </div>
+          <div class="card-tags">
+            <span class="tag tag-scope">24 Users (4P + 20G)</span>
+            <span class="tag tag-viewpoint">Mixed Surveys (Skip/Agree/Oppose/Neutral)</span>
+            <span class="tag tag-rounds">3 Rounds (21 Qs)</span>
+          </div>
+          <h3 class="scenario-title">Mixed Survey Responses with 4 Participants and 20 Guest Viewers | Load Testing</h3>
+          <p class="scenario-desc">
+            Complete E2E and load test with 24 concurrent users: Creator skips survey, P2 submits Agree, P3 submits Disagree/Oppose, P4 submits Neutral. 20 guest viewers join automatically with verified 20-count badge, strict restriction enforcement, circular points transfer, and 3 rounds of balanced questions.
+          </p>
+          <div class="scenario-article">
+            <div class="scenario-article-label">Target Article (New) & Chatroom</div>
+            <div class="scenario-article-title">Workers hit hard by rising employer health insurance costs (Room: QA_S9_Load24)</div>
+          </div>
+          <ul class="key-points">
+            <li><span>24 concurrent users: 4 Participants (Skip, Agree, Oppose, Neutral) & 20 Guests</span></li>
+            <li><span>Guest permissions verified (20 count badge, live leave/rejoin, strict lockdown)</span></li>
+            <li><span>Balanced question delivery (Admin Pros & Oppose matching), circular token transfers</span></li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="scenario-9-report/all-in-one-report.html">View Report →</a>
+          <a class="btn btn-secondary" href="scenario-9-report/all-in-one-report.html#videos-pane">Videos (24)</a>
+          <button class="btn btn-rerun" onclick="openRerunModal('scenario-9', 'Scenario 9: Mixed Survey (24 Users)')">⚡ Re-Run</button>
+        </div>
+      </div>
+
+      <!-- CARD 3: SCENARIO 7 -->
       <div class="scenario-card" data-category="public">
         <div class="card-top">
           <div class="card-header-row">
@@ -1239,6 +1272,7 @@
           <label class="form-label">Select Target Workflow:</label>
           <select id="scenarioSelect" class="form-select" onchange="onScenarioChange(this.value)">
             <option value="admin">Admin Portal Workflow (AI Prompts & Round Distribution)</option>
+            <option value="scenario-9">Scenario 9: Mixed Survey (24 Users - 4P + 20G)</option>
             <option value="scenario-7">Scenario 7: Mixed Perspective (16 Users - 4P + 12G)</option>
             <option value="scenario-5">Scenario 5: 100% Support Viewpoint (12 Users, Only Pros)</option>
             <option value="scenario-4">Scenario 4: 100% Oppose Viewpoint (8 Users, Only Oppose)</option>
@@ -1332,6 +1366,10 @@
       'admin': {
         title: 'Admin Portal Workflow (AI Prompts & Configuration)',
         cli: 'npm run test:admin && npm run report:admin-html'
+      },
+      'scenario-9': {
+        title: 'Scenario 9: Mixed Survey Responses with 4 Participants and 20 Guest Viewers (24 Users)',
+        cli: 'npm run test:scenario-9 && npm run report:scenario-9-html'
       },
       'scenario-7': {
         title: 'Scenario 7: Mixed Perspective (16 Users - 4P + 12G)',
