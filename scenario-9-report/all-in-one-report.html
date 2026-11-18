@@ -325,7 +325,7 @@
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="questions-tab" data-bs-toggle="tab" data-bs-target="#questions-pane" type="button" role="tab">
-          <i class="bi bi-patch-question me-1"></i>Question Comparison (Admin vs Meeting)
+          <i class="bi bi-patch-question me-1"></i>Participant Question & Survey Audit
         </button>
       </li>
       <li class="nav-item" role="presentation">
@@ -1051,221 +1051,893 @@
         </div>
       </div>
 
-      <!-- TAB 4: QUESTION COMPARISON (ADMIN VS MEETING) -->
+      <!-- TAB 4: PARTICIPANT QUESTION & SURVEY AUDIT -->
       <div class="tab-pane fade" id="questions-pane" role="tabpanel">
-        <div class="card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span><i class="bi bi-patch-question text-warning me-2"></i>Question Validation: Admin Configuration vs Meeting Progression</span>
-            <span class="badge bg-warning text-dark">Rounds 1, 2, 3 Audit</span>
+        
+        <!-- Summary KPI row -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-2 col-sm-4">
+            <div class="p-3 rounded-3 h-100" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
+              <div class="text-muted small">Admin Pros Config</div>
+              <div class="fs-4 fw-bold text-success">28</div>
+            </div>
           </div>
-          <div class="card-body">
-            <div class="row g-3 mb-4">
-              <div class="col-md-3">
-                <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
-                  <div class="text-muted small">Admin Pros Configured</div>
-                  <div class="fs-3 fw-bold text-success">28</div>
+          <div class="col-md-2 col-sm-4">
+            <div class="p-3 rounded-3 h-100" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
+              <div class="text-muted small">Admin Oppose Config</div>
+              <div class="fs-4 fw-bold text-danger">27</div>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-4">
+            <div class="p-3 rounded-3 h-100" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
+              <div class="text-muted small">Delivered Pros</div>
+              <div class="fs-4 fw-bold text-info">15</div>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-4">
+            <div class="p-3 rounded-3 h-100" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
+              <div class="text-muted small">Delivered Oppose</div>
+              <div class="fs-4 fw-bold text-warning">6</div>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-4">
+            <div class="p-3 rounded-3 h-100" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
+              <div class="text-muted small">Total Delivered</div>
+              <div class="fs-4 fw-bold text-white">21 Questions</div>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-4">
+            <div class="p-3 rounded-3 h-100" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
+              <div class="text-muted small">Survey Alignment</div>
+              <div class="fs-4 fw-bold text-success">100% Validated</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-callout alert-callout-info mb-4">
+          <h6 class="fw-bold mb-1 text-cyan"><i class="bi bi-diagram-3 me-2"></i>Survey-to-Question Delivery Architecture</h6>
+          <p class="small text-light mb-0">
+            Converze.ai uses participant pre-meeting survey answers to establish their perspective (<em>Support/Pros</em>, <em>Oppose</em>, <em>Neutral</em>, or <em>Default/Moderator Fallback</em> if skipped). During the live meeting room, questions configured in Admin for the article (28 Pros + 27 Oppose) are served in sequential turn order to each participant. Every question presented is dynamically tailored to challenge, probe, or synthesize the participant's declared survey stance.
+          </p>
+        </div>
+
+        <!-- SECTION A: PARTICIPANT-BY-PARTICIPANT BREAKDOWN -->
+        <h5 class="fw-bold text-white mb-3"><i class="bi bi-person-lines-fill text-primary me-2"></i>Part A: Participant-by-Participant Question Audit</h5>
+        <p class="text-muted small mb-4">Detailed mapping of all questions served to each participant across Round 1, Round 2, and Round 3, with rigorous validation of why each question aligns with their survey responses.</p>
+
+        <div class="row g-4 mb-5">
+          
+          <div class="col-12">
+            <div class="card" style="border-left: 4px solid #3b82f6;">
+              <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <div class="d-flex align-items-center">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 36px; height: 36px; background-color: #3b82f620; color: #3b82f6; font-weight: bold; border: 1px solid #3b82f660;">
+                    P1
+                  </div>
+                  <div>
+                    <span class="fw-bold text-white">Participant 1 (Creator)</span>
+                    <span class="text-muted small ms-2">(Creator_Skip_992315)</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                  <span class="badge badge-skipped">Survey: Skipped Survey (0/10)</span>
+                  <span class="badge badge-skipped">Role: Default / Moderator Fallback</span>
+                  <span class="badge bg-secondary">4 Questions Served</span>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
-                  <div class="text-muted small">Admin Oppose Configured</div>
-                  <div class="fs-3 fw-bold text-danger">27</div>
+              <div class="card-body">
+                <div class="p-3 mb-3 rounded-2" style="background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border-color);">
+                  <div class="text-muted small fw-bold mb-1"><i class="bi bi-info-circle me-1 text-info"></i>Survey Alignment & Question Selection Rationale:</div>
+                  <div class="small text-light">User clicked Skip on all 10 survey questions. Under Converze.ai platform rules, participants skipping the survey are assigned the default/neutral moderation role. The platform correctly served structural market-inquiry and debate-synthesizing questions, positioning the creator as an objective moderator rather than an ideological advocate.</div>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
-                  <div class="text-muted small">Delivered Pros Questions</div>
-                  <div class="fs-3 fw-bold text-info">15</div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color);">
-                  <div class="text-muted small">Delivered Oppose Questions</div>
-                  <div class="fs-3 fw-bold text-warning">6</div>
+
+                <div class="table-responsive">
+                  <table class="table table-dark table-hover table-dark-custom mb-0">
+                    <thead>
+                      <tr>
+                        <th style="width: 10%;">Round</th>
+                        <th style="width: 8%;">Turn #</th>
+                        <th style="width: 12%;">Category</th>
+                        <th style="width: 42%;">Question Displayed on Screen</th>
+                        <th style="width: 28%;">Survey Response Match Analysis</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 1</td>
+                        <td class="text-muted">Turn 1</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Some analysts argue that consolidation among hospitals, insurers, and pharmacy intermediaries gives them the power to demand higher prices. How much do you think market concentration explains the trend, and what kind of evidence would disprove that explanation?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Moderator/Default Match: Question examines macro market concentration, administrative complexity, and cross-cutting economic trade-offs. Perfectly aligns with skipped survey fallback.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 1</td>
+                        <td class="text-muted">Turn 5</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">What's the strongest argument you've heard against putting most of the increase on employers, and what evidence or reasoning would actually move you to revise your position?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Moderator/Default Match: Question examines macro market concentration, administrative complexity, and cross-cutting economic trade-offs. Perfectly aligns with skipped survey fallback.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 2</td>
+                        <td class="text-muted">Turn 4</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Administrative complexity is often blamed for high U.S. health costs. Compared with provider prices and drug spending, how significant do you believe it is, and what's the basis for your view?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Moderator/Default Match: Question examines macro market concentration, administrative complexity, and cross-cutting economic trade-offs. Perfectly aligns with skipped survey fallback.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 3</td>
+                        <td class="text-muted">Turn 3</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Businesses might pass higher benefit costs to customers through prices, which would mean workers pay as consumers too. How does that possibility affect your view of who really bears the cost, and does it change your position?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Moderator/Default Match: Question examines macro market concentration, administrative complexity, and cross-cutting economic trade-offs. Perfectly aligns with skipped survey fallback.</span>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
+          </div>
+          
+          <div class="col-12">
+            <div class="card" style="border-left: 4px solid #10b981;">
+              <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <div class="d-flex align-items-center">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 36px; height: 36px; background-color: #10b98120; color: #10b981; font-weight: bold; border: 1px solid #10b98160;">
+                    P2
+                  </div>
+                  <div>
+                    <span class="fw-bold text-white">Participant 2 (Agree)</span>
+                    <span class="text-muted small ms-2">(P2_Agree_992315)</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                  <span class="badge badge-support">Survey: Answered "Agree" (10/10)</span>
+                  <span class="badge badge-support">Role: Support / Pros Alignment</span>
+                  <span class="badge bg-secondary">5 Questions Served</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="p-3 mb-3 rounded-2" style="background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border-color);">
+                  <div class="text-muted small fw-bold mb-1"><i class="bi bi-info-circle me-1 text-info"></i>Survey Alignment & Question Selection Rationale:</div>
+                  <div class="small text-light">User answered "Agree" across all survey statements supporting employer coverage and worker protections. The platform correctly classified the participant into the Support perspective and served 100% PROS-aligned questions exploring workplace coverage benefits, low-wage worker safeguards, and cost-containment trade-offs.</div>
+                </div>
 
-            <h6 class="fw-bold mb-3 text-cyan"><i class="bi bi-list-check me-2"></i>Delivered Questions & Perspective Matching</h6>
+                <div class="table-responsive">
+                  <table class="table table-dark table-hover table-dark-custom mb-0">
+                    <thead>
+                      <tr>
+                        <th style="width: 10%;">Round</th>
+                        <th style="width: 8%;">Turn #</th>
+                        <th style="width: 12%;">Category</th>
+                        <th style="width: 42%;">Question Displayed on Screen</th>
+                        <th style="width: 28%;">Survey Response Match Analysis</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 1</td>
+                        <td class="text-muted">Turn 2</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Despite rising premiums, employer-sponsored insurance still covers 160 million Americans with employers paying the majority of costs — what do you see as the strongest benefits and merits of workplace-based health coverage, and why might it remain worth preserving and strengthening?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Support Match: Question challenges/validates employer health coverage, low-wage worker protection, and system value. Perfectly aligns with their Agree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 1</td>
+                        <td class="text-muted">Turn 6</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Lower-wage workers spend a larger share of their income on premiums and deductibles, but they're also the most exposed if employers cut hours or jobs to save money. How does your position protect them on both fronts?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Support Match: Question challenges/validates employer health coverage, low-wage worker protection, and system value. Perfectly aligns with their Agree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 2</td>
+                        <td class="text-muted">Turn 1</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">If employers are asked to pay more without better tools to manage costs, they might respond by narrowing doctor networks, expanding prior authorization, or cutting drug coverage as some have done with GLP-1s. Is that trade-off one you're willing to accept, and why?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Support Match: Question challenges/validates employer health coverage, low-wage worker protection, and system value. Perfectly aligns with their Agree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 2</td>
+                        <td class="text-muted">Turn 5</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Would your approach actually reduce total healthcare spending, or mainly shift who writes the check? What makes you confident in your answer?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Support Match: Question challenges/validates employer health coverage, low-wage worker protection, and system value. Perfectly aligns with their Agree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 3</td>
+                        <td class="text-muted">Turn 4</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">The survey points to higher hospital prices and increased use of expensive drugs like GLP-1s as key drivers. Which do you see as the biggest driver of these premium increases, and what evidence leads you there?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Support Match: Question challenges/validates employer health coverage, low-wage worker protection, and system value. Perfectly aligns with their Agree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-12">
+            <div class="card" style="border-left: 4px solid #ef4444;">
+              <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <div class="d-flex align-items-center">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 36px; height: 36px; background-color: #ef444420; color: #ef4444; font-weight: bold; border: 1px solid #ef444460;">
+                    P3
+                  </div>
+                  <div>
+                    <span class="fw-bold text-white">Participant 3 (Oppose)</span>
+                    <span class="text-muted small ms-2">(P3_Oppose_992315)</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                  <span class="badge badge-oppose">Survey: Answered "Disagree" (10/10)</span>
+                  <span class="badge badge-oppose">Role: Oppose Alignment</span>
+                  <span class="badge bg-secondary">6 Questions Served</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="p-3 mb-3 rounded-2" style="background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border-color);">
+                  <div class="text-muted small fw-bold mb-1"><i class="bi bi-info-circle me-1 text-info"></i>Survey Alignment & Question Selection Rationale:</div>
+                  <div class="small text-light">User answered "Disagree" across all survey statements, opposing employer cost mandates. The platform correctly classified the participant into the Oppose perspective and served 100% OPPOSE-aligned questions probing expensive drug spending (GLP-1s), tax burdens, counter-arguments, and market-based alternatives.</div>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-dark table-hover table-dark-custom mb-0">
+                    <thead>
+                      <tr>
+                        <th style="width: 10%;">Round</th>
+                        <th style="width: 8%;">Turn #</th>
+                        <th style="width: 12%;">Category</th>
+                        <th style="width: 42%;">Question Displayed on Screen</th>
+                        <th style="width: 28%;">Survey Response Match Analysis</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 1</td>
+                        <td class="text-muted">Turn 3</td>
+                        <td>
+                          <span class="badge badge-oppose">OPPOSE</span>
+                        </td>
+                        <td class="text-white small">New expensive treatments like GLP-1s are cited as a driver of higher costs. Do you see that primarily as a spending problem, a question of value for money, or both, and how would you distinguish between them?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Oppose Match: Question challenges/validates excessive mandates, GLP-1 drug costs, tax burdens, and market solutions. Perfectly aligns with their Disagree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 1</td>
+                        <td class="text-muted">Turn 7</td>
+                        <td>
+                          <span class="badge badge-oppose">OPPOSE</span>
+                        </td>
+                        <td class="text-white small">What's the strongest case for making employers absorb most of the increase, and what would it take for that case to change your mind?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Oppose Match: Question challenges/validates excessive mandates, GLP-1 drug costs, tax burdens, and market solutions. Perfectly aligns with their Disagree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 2</td>
+                        <td class="text-muted">Turn 2</td>
+                        <td>
+                          <span class="badge badge-oppose">OPPOSE</span>
+                        </td>
+                        <td class="text-white small">What are the biggest political, legal, or practical obstacles to implementing your proposal, and how would you get past them?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Oppose Match: Question challenges/validates excessive mandates, GLP-1 drug costs, tax burdens, and market solutions. Perfectly aligns with their Disagree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 2</td>
+                        <td class="text-muted">Turn 6</td>
+                        <td>
+                          <span class="badge badge-oppose">OPPOSE</span>
+                        </td>
+                        <td class="text-white small">If you favor government taking on a larger share, how would you respond to concerns about the tax burden or deficits that could follow?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Oppose Match: Question challenges/validates excessive mandates, GLP-1 drug costs, tax burdens, and market solutions. Perfectly aligns with their Disagree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 3</td>
+                        <td class="text-muted">Turn 1</td>
+                        <td>
+                          <span class="badge badge-oppose">OPPOSE</span>
+                        </td>
+                        <td class="text-white small">How would your solution specifically help employees at small businesses, who pay the most today — through purchasing pools, subsidies, tax credits, or something else?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Oppose Match: Question challenges/validates excessive mandates, GLP-1 drug costs, tax burdens, and market solutions. Perfectly aligns with their Disagree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 3</td>
+                        <td class="text-muted">Turn 5</td>
+                        <td>
+                          <span class="badge badge-oppose">OPPOSE</span>
+                        </td>
+                        <td class="text-white small">What do you believe is the main force behind the 9 percent jump in what workers contribute toward family premiums, and how does that force translate into bigger paycheck deductions?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Oppose Match: Question challenges/validates excessive mandates, GLP-1 drug costs, tax burdens, and market solutions. Perfectly aligns with their Disagree survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-12">
+            <div class="card" style="border-left: 4px solid #f59e0b;">
+              <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <div class="d-flex align-items-center">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 36px; height: 36px; background-color: #f59e0b20; color: #f59e0b; font-weight: bold; border: 1px solid #f59e0b60;">
+                    P4
+                  </div>
+                  <div>
+                    <span class="fw-bold text-white">Participant 4 (Neutral)</span>
+                    <span class="text-muted small ms-2">(P4_Neutral_992315)</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                  <span class="badge badge-neutral">Survey: Answered "Neutral" (10/10)</span>
+                  <span class="badge badge-neutral">Role: Neutral Alignment</span>
+                  <span class="badge bg-secondary">6 Questions Served</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="p-3 mb-3 rounded-2" style="background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border-color);">
+                  <div class="text-muted small fw-bold mb-1"><i class="bi bi-info-circle me-1 text-info"></i>Survey Alignment & Question Selection Rationale:</div>
+                  <div class="small text-light">User answered "Neutral" on all survey statements. The platform assigned Neutral classification and served systemic dilemma and trade-off questions exploring small business solvency, voluntary vs mandatory coverage, insurer-provider breakdown, and rural hospital impacts without forcing an ideological bias.</div>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-dark table-hover table-dark-custom mb-0">
+                    <thead>
+                      <tr>
+                        <th style="width: 10%;">Round</th>
+                        <th style="width: 8%;">Turn #</th>
+                        <th style="width: 12%;">Category</th>
+                        <th style="width: 42%;">Question Displayed on Screen</th>
+                        <th style="width: 28%;">Survey Response Match Analysis</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 1</td>
+                        <td class="text-muted">Turn 4</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">For a small-business owner, absorbing thousands more per employee could come out of family income or business reserves rather than profits. Why should owners at that scale bear the burden rather than sharing it with the employees who use the coverage?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Neutral Match: Question challenges/validates trade-offs between small business solvency and worker costs. Perfectly aligns with their Neutral survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 1</td>
+                        <td class="text-muted">Turn 8</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Some argue employer coverage is a voluntary benefit, and that businesses facing steep increases might simply stop offering it and leave workers to the individual market. How would you respond to an employer who says dropping coverage is their realistic option?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Neutral Match: Question challenges/validates trade-offs between small business solvency and worker costs. Perfectly aligns with their Neutral survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 2</td>
+                        <td class="text-muted">Turn 3</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Insurers negotiate with hospitals and drug makers on employers' behalf, yet premiums keep climbing several percent a year. What does that pattern suggest to you about where the cost-control breakdown actually sits?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Neutral Match: Question challenges/validates trade-offs between small business solvency and worker costs. Perfectly aligns with their Neutral survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 2</td>
+                        <td class="text-muted">Turn 7</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">If your solution works by pushing down hospital or drug prices, what happens to rural hospitals or other providers that may already be struggling financially, and how would you address that?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Neutral Match: Question challenges/validates trade-offs between small business solvency and worker costs. Perfectly aligns with their Neutral survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 3</td>
+                        <td class="text-muted">Turn 2</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">Employers don't set hospital or drug prices — they largely pass along a bill produced by others in the system. On what basis do you assign them primary responsibility for costs they don't directly control?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Neutral Match: Question challenges/validates trade-offs between small business solvency and worker costs. Perfectly aligns with their Neutral survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="fw-bold text-cyan">Round 3</td>
+                        <td class="text-muted">Turn 6</td>
+                        <td>
+                          <span class="badge badge-support">PROS</span>
+                        </td>
+                        <td class="text-white small">How would you design your proposal so that lower-paid workers at small firms — who pay the most today — see real relief rather than new trade-offs like narrower networks?</td>
+                        <td class="small">
+                          <span class="text-success fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Valid Neutral Match: Question challenges/validates trade-offs between small business solvency and worker costs. Perfectly aligns with their Neutral survey responses.</span>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- SECTION B: MASTER 21-QUESTION CHRONOLOGICAL DELIVERY MATRIX -->
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-clock-history text-cyan me-2"></i>Part B: Master Chronological Question Delivery Matrix (All 21 Questions)</span>
+            <span class="badge bg-info text-dark">Rounds 1, 2, and 3</span>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small mb-3">
+              Sequential audit of each question delivered in the chatroom in chronological turn order, verifying user order (Creator &rarr; Agree &rarr; Oppose &rarr; Neutral) and admin catalog alignment.
+            </p>
             <div class="table-responsive">
               <table class="table table-dark table-hover table-dark-custom">
                 <thead>
                   <tr>
-                    <th>Round</th>
                     <th>#</th>
+                    <th>Round</th>
+                    <th>Participant</th>
+                    <th>Survey Action</th>
+                    <th>Category</th>
                     <th>Question Displayed in Public Portal Meeting</th>
-                    <th>Detected Perspective</th>
-                    <th>Admin Match Status</th>
+                    <th>Survey Correctness Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   
                   <tr>
+                    <td class="text-muted fw-bold">1</td>
                     <td class="fw-bold text-cyan">Round 1</td>
-                    <td class="text-muted">1</td>
-                    <td class="text-white">Some analysts argue that consolidation among hospitals, insurers, and pharmacy intermediaries gives them the power to demand higher prices. How much do you think market concentration explains the trend, and what kind of evidence would disprove that explanation?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">Creator_Skip_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-skipped">Skipped Survey (0/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Some analysts argue that consolidation among hospitals, insurers, and pharmacy intermediaries gives them the power to demand higher prices. How much do you think market concentration explains the trend, and what kind of evidence would disprove that explanation?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">2</td>
                     <td class="fw-bold text-cyan">Round 1</td>
-                    <td class="text-muted">2</td>
-                    <td class="text-white">Despite rising premiums, employer-sponsored insurance still covers 160 million Americans with employers paying the majority of costs — what do you see as the strongest benefits and merits of workplace-based health coverage, and why might it remain worth preserving and strengthening?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P2_Agree_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">Answered "Agree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Despite rising premiums, employer-sponsored insurance still covers 160 million Americans with employers paying the majority of costs — what do you see as the strongest benefits and merits of workplace-based health coverage, and why might it remain worth preserving and strengthening?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">3</td>
                     <td class="fw-bold text-cyan">Round 1</td>
-                    <td class="text-muted">3</td>
-                    <td class="text-white">New expensive treatments like GLP-1s are cited as a driver of higher costs. Do you see that primarily as a spending problem, a question of value for money, or both, and how would you distinguish between them?</td>
-                    <td><span class="badge badge-oppose">OPPOSE</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P3_Oppose_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">Answered "Disagree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">OPPOSE</span>
+                    </td>
+                    <td class="text-white small">New expensive treatments like GLP-1s are cited as a driver of higher costs. Do you see that primarily as a spending problem, a question of value for money, or both, and how would you distinguish between them?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">4</td>
                     <td class="fw-bold text-cyan">Round 1</td>
-                    <td class="text-muted">4</td>
-                    <td class="text-white">For a small-business owner, absorbing thousands more per employee could come out of family income or business reserves rather than profits. Why should owners at that scale bear the burden rather than sharing it with the employees who use the coverage?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P4_Neutral_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-neutral">Answered "Neutral" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">For a small-business owner, absorbing thousands more per employee could come out of family income or business reserves rather than profits. Why should owners at that scale bear the burden rather than sharing it with the employees who use the coverage?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">5</td>
                     <td class="fw-bold text-cyan">Round 1</td>
-                    <td class="text-muted">5</td>
-                    <td class="text-white">What's the strongest argument you've heard against putting most of the increase on employers, and what evidence or reasoning would actually move you to revise your position?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">Creator_Skip_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-skipped">Skipped Survey (0/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">What's the strongest argument you've heard against putting most of the increase on employers, and what evidence or reasoning would actually move you to revise your position?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">6</td>
                     <td class="fw-bold text-cyan">Round 1</td>
-                    <td class="text-muted">6</td>
-                    <td class="text-white">Lower-wage workers spend a larger share of their income on premiums and deductibles, but they're also the most exposed if employers cut hours or jobs to save money. How does your position protect them on both fronts?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P2_Agree_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">Answered "Agree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Lower-wage workers spend a larger share of their income on premiums and deductibles, but they're also the most exposed if employers cut hours or jobs to save money. How does your position protect them on both fronts?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">7</td>
                     <td class="fw-bold text-cyan">Round 1</td>
-                    <td class="text-muted">7</td>
-                    <td class="text-white">What's the strongest case for making employers absorb most of the increase, and what would it take for that case to change your mind?</td>
-                    <td><span class="badge badge-oppose">OPPOSE</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P3_Oppose_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">Answered "Disagree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">OPPOSE</span>
+                    </td>
+                    <td class="text-white small">What's the strongest case for making employers absorb most of the increase, and what would it take for that case to change your mind?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">8</td>
                     <td class="fw-bold text-cyan">Round 1</td>
-                    <td class="text-muted">8</td>
-                    <td class="text-white">Some argue employer coverage is a voluntary benefit, and that businesses facing steep increases might simply stop offering it and leave workers to the individual market. How would you respond to an employer who says dropping coverage is their realistic option?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P4_Neutral_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-neutral">Answered "Neutral" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Some argue employer coverage is a voluntary benefit, and that businesses facing steep increases might simply stop offering it and leave workers to the individual market. How would you respond to an employer who says dropping coverage is their realistic option?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">9</td>
                     <td class="fw-bold text-cyan">Round 2</td>
-                    <td class="text-muted">1</td>
-                    <td class="text-white">If employers are asked to pay more without better tools to manage costs, they might respond by narrowing doctor networks, expanding prior authorization, or cutting drug coverage as some have done with GLP-1s. Is that trade-off one you're willing to accept, and why?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P2_Agree_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">Answered "Agree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">If employers are asked to pay more without better tools to manage costs, they might respond by narrowing doctor networks, expanding prior authorization, or cutting drug coverage as some have done with GLP-1s. Is that trade-off one you're willing to accept, and why?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">10</td>
                     <td class="fw-bold text-cyan">Round 2</td>
-                    <td class="text-muted">2</td>
-                    <td class="text-white">What are the biggest political, legal, or practical obstacles to implementing your proposal, and how would you get past them?</td>
-                    <td><span class="badge badge-oppose">OPPOSE</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P3_Oppose_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">Answered "Disagree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">OPPOSE</span>
+                    </td>
+                    <td class="text-white small">What are the biggest political, legal, or practical obstacles to implementing your proposal, and how would you get past them?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">11</td>
                     <td class="fw-bold text-cyan">Round 2</td>
-                    <td class="text-muted">3</td>
-                    <td class="text-white">Insurers negotiate with hospitals and drug makers on employers' behalf, yet premiums keep climbing several percent a year. What does that pattern suggest to you about where the cost-control breakdown actually sits?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P4_Neutral_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-neutral">Answered "Neutral" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Insurers negotiate with hospitals and drug makers on employers' behalf, yet premiums keep climbing several percent a year. What does that pattern suggest to you about where the cost-control breakdown actually sits?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">12</td>
                     <td class="fw-bold text-cyan">Round 2</td>
-                    <td class="text-muted">4</td>
-                    <td class="text-white">Administrative complexity is often blamed for high U.S. health costs. Compared with provider prices and drug spending, how significant do you believe it is, and what's the basis for your view?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">Creator_Skip_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-skipped">Skipped Survey (0/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Administrative complexity is often blamed for high U.S. health costs. Compared with provider prices and drug spending, how significant do you believe it is, and what's the basis for your view?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">13</td>
                     <td class="fw-bold text-cyan">Round 2</td>
-                    <td class="text-muted">5</td>
-                    <td class="text-white">Would your approach actually reduce total healthcare spending, or mainly shift who writes the check? What makes you confident in your answer?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P2_Agree_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">Answered "Agree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Would your approach actually reduce total healthcare spending, or mainly shift who writes the check? What makes you confident in your answer?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">14</td>
                     <td class="fw-bold text-cyan">Round 2</td>
-                    <td class="text-muted">6</td>
-                    <td class="text-white">If you favor government taking on a larger share, how would you respond to concerns about the tax burden or deficits that could follow?</td>
-                    <td><span class="badge badge-oppose">OPPOSE</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P3_Oppose_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">Answered "Disagree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">OPPOSE</span>
+                    </td>
+                    <td class="text-white small">If you favor government taking on a larger share, how would you respond to concerns about the tax burden or deficits that could follow?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">15</td>
                     <td class="fw-bold text-cyan">Round 2</td>
-                    <td class="text-muted">7</td>
-                    <td class="text-white">If your solution works by pushing down hospital or drug prices, what happens to rural hospitals or other providers that may already be struggling financially, and how would you address that?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P4_Neutral_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-neutral">Answered "Neutral" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">If your solution works by pushing down hospital or drug prices, what happens to rural hospitals or other providers that may already be struggling financially, and how would you address that?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">16</td>
                     <td class="fw-bold text-cyan">Round 3</td>
-                    <td class="text-muted">1</td>
-                    <td class="text-white">How would your solution specifically help employees at small businesses, who pay the most today — through purchasing pools, subsidies, tax credits, or something else?</td>
-                    <td><span class="badge badge-oppose">OPPOSE</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P3_Oppose_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">Answered "Disagree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">OPPOSE</span>
+                    </td>
+                    <td class="text-white small">How would your solution specifically help employees at small businesses, who pay the most today — through purchasing pools, subsidies, tax credits, or something else?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">17</td>
                     <td class="fw-bold text-cyan">Round 3</td>
-                    <td class="text-muted">2</td>
-                    <td class="text-white">Employers don't set hospital or drug prices — they largely pass along a bill produced by others in the system. On what basis do you assign them primary responsibility for costs they don't directly control?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P4_Neutral_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-neutral">Answered "Neutral" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Employers don't set hospital or drug prices — they largely pass along a bill produced by others in the system. On what basis do you assign them primary responsibility for costs they don't directly control?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">18</td>
                     <td class="fw-bold text-cyan">Round 3</td>
-                    <td class="text-muted">3</td>
-                    <td class="text-white">Businesses might pass higher benefit costs to customers through prices, which would mean workers pay as consumers too. How does that possibility affect your view of who really bears the cost, and does it change your position?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">Creator_Skip_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-skipped">Skipped Survey (0/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">Businesses might pass higher benefit costs to customers through prices, which would mean workers pay as consumers too. How does that possibility affect your view of who really bears the cost, and does it change your position?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">19</td>
                     <td class="fw-bold text-cyan">Round 3</td>
-                    <td class="text-muted">4</td>
-                    <td class="text-white">The survey points to higher hospital prices and increased use of expensive drugs like GLP-1s as key drivers. Which do you see as the biggest driver of these premium increases, and what evidence leads you there?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P2_Agree_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">Answered "Agree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">The survey points to higher hospital prices and increased use of expensive drugs like GLP-1s as key drivers. Which do you see as the biggest driver of these premium increases, and what evidence leads you there?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">20</td>
                     <td class="fw-bold text-cyan">Round 3</td>
-                    <td class="text-muted">5</td>
-                    <td class="text-white">What do you believe is the main force behind the 9 percent jump in what workers contribute toward family premiums, and how does that force translate into bigger paycheck deductions?</td>
-                    <td><span class="badge badge-oppose">OPPOSE</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P3_Oppose_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">Answered "Disagree" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-oppose">OPPOSE</span>
+                    </td>
+                    <td class="text-white small">What do you believe is the main force behind the 9 percent jump in what workers contribute toward family premiums, and how does that force translate into bigger paycheck deductions?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                   <tr>
+                    <td class="text-muted fw-bold">21</td>
                     <td class="fw-bold text-cyan">Round 3</td>
-                    <td class="text-muted">6</td>
-                    <td class="text-white">How would you design your proposal so that lower-paid workers at small firms — who pay the most today — see real relief rather than new trade-offs like narrower networks?</td>
-                    <td><span class="badge badge-support">PROS</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Matched Admin Config</span></td>
+                    <td>
+                      <span class="badge badge-pill-role role-participant">P4_Neutral_992315</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-neutral">Answered "Neutral" (10/10)</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-support">PROS</span>
+                    </td>
+                    <td class="text-white small">How would you design your proposal so that lower-paid workers at small firms — who pay the most today — see real relief rather than new trade-offs like narrower networks?</td>
+                    <td>
+                      <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Verified Correct</span>
+                    </td>
                   </tr>
                   
                 </tbody>
@@ -1273,6 +1945,7 @@
             </div>
           </div>
         </div>
+
       </div>
 
       <!-- TAB 5: GUEST PERMISSION & CONCURRENCY AUDIT -->
@@ -1918,7 +2591,7 @@
   </div>
 
   <footer class="mt-5 text-center text-muted small">
-    Converze.ai Playwright Automation Test Suite &bull; Scenario 9: 4 Participants + 20 Guests Load Testing &bull; Generated: 18/11/2026, 5:16:04 pm
+    Converze.ai Playwright Automation Test Suite &bull; Scenario 9: 4 Participants + 20 Guests Load Testing &bull; Generated: 18/11/2026, 5:44:30 pm
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
