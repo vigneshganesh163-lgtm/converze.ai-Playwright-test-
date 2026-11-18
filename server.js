@@ -9,14 +9,35 @@ const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = __dirname;
 const GITHUB_REPO = 'vigneshganesh163-lgtm/converze.ai-Playwright-test-';
 const GITHUB_WORKFLOW = 'run-tests.yml';
+const JOBS_FILE = path.join(PUBLIC_DIR, 'rerun-jobs.json');
 
-// Test execution state
+// Persistent Re-run Jobs Queue
+let rerunJobs = [];
+try {
+  if (fs.existsSync(JOBS_FILE)) {
+    rerunJobs = JSON.parse(fs.readFileSync(JOBS_FILE, 'utf8'));
+  }
+} catch (e) {
+  rerunJobs = [];
+}
+
+function saveJobs() {
+  try {
+    fs.writeFileSync(JOBS_FILE, JSON.stringify(rerunJobs.slice(0, 100), null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Failed to save jobs file:', e.message);
+  }
+}
+
+// Current test execution state (in-memory tracker)
 let currentTestRun = {
   running: false,
+  jobId: null,
   scenario: null,
   startTime: null,
   endTime: null,
   status: 'idle',
+  separateReportUrl: null,
   logs: []
 };
 
@@ -36,12 +57,22 @@ const MIME_TYPES = {
   '.zip': 'application/zip'
 };
 
-function addLog(msg) {
+function addLog(msg, jobId) {
   const line = `[${new Date().toLocaleTimeString()}] ${msg}`;
   currentTestRun.logs.push(line);
   if (currentTestRun.logs.length > 500) {
     currentTestRun.logs.shift();
   }
+
+  if (jobId) {
+    const job = rerunJobs.find(j => j.id === jobId);
+    if (job) {
+      job.logs = job.logs || [];
+      job.logs.push(line);
+      if (job.logs.length > 500) job.logs.shift();
+    }
+  }
+  saveJobs();
 }
 
 // Trigger GitHub Actions workflow_dispatch via GitHub API
@@ -50,7 +81,7 @@ function triggerGitHubWorkflow(scenario, token) {
     const postData = JSON.stringify({
       ref: 'main',
       inputs: {
-        scenario: scenario || 'scenario-6'
+        scenario: scenario || 'scenario-9'
       }
     });
 
@@ -86,6 +117,101 @@ function triggerGitHubWorkflow(scenario, token) {
   });
 }
 
+// Helper to spawn a local test and create a separate report
+function executeLocalTestWithSeparateReport(job) {
+  const scenario = job.scenario;
+  const jobId = job.id;
+
+  currentTestRun.running = true;
+  currentTestRun.jobId = jobId;
+  currentTestRun.scenario = scenario;
+  currentTestRun.startTime = new Date().toISOString();
+  currentTestRun.endTime = null;
+  currentTestRun.status = 'running';
+  currentTestRun.separateReportUrl = null;
+  currentTestRun.logs = [];
+
+  job.status = 'running';
+  job.startedAt = new Date().toISOString();
+  addLog(`⚡ [Antigravity Local Engine] Executing Playwright automated test for ${scenario}...`, jobId);
+
+  const scriptName = `test:${scenario}`;
+  const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+
+  const child = spawn(npmCmd, ['run', scriptName], {
+    cwd: PUBLIC_DIR,
+    shell: true
+  });
+
+  child.stdout.on('data', (d) => {
+    const text = d.toString().trim();
+    if (text) {
+      text.split('\n').forEach(line => addLog(line.trim(), jobId));
+    }
+  });
+
+  child.stderr.on('data', (d) => {
+    const text = d.toString().trim();
+    if (text) {
+      text.split('\n').forEach(line => addLog(`[ERR] ${line.trim()}`, jobId));
+    }
+  });
+
+  child.on('close', (code) => {
+    currentTestRun.running = false;
+    currentTestRun.endTime = new Date().toISOString();
+    const passed = code === 0;
+    currentTestRun.status = passed ? 'passed' : 'failed';
+    job.status = passed ? 'passed' : 'failed';
+    job.completedAt = new Date().toISOString();
+    addLog(`Test process exited with code ${code}. Status: ${currentTestRun.status.toUpperCase()}`, jobId);
+
+    // Regenerate Base HTML report
+    const reportScript = `report:${scenario}-html`;
+    addLog(`Compiling HTML report via ${reportScript}...`, jobId);
+    const reportChild = spawn(npmCmd, ['run', reportScript], {
+      cwd: PUBLIC_DIR,
+      shell: true
+    });
+
+    reportChild.on('close', () => {
+      try {
+        // Create an isolated, separate report directory for this specific run
+        const baseReportDir = path.join(PUBLIC_DIR, `${scenario}-report`);
+        const separateRunsDir = path.join(PUBLIC_DIR, 'runs');
+        if (!fs.existsSync(separateRunsDir)) fs.mkdirSync(separateRunsDir, { recursive: true });
+
+        const targetRunDir = path.join(separateRunsDir, `${scenario}-${jobId}`);
+        if (fs.existsSync(baseReportDir)) {
+          // Copy directory recursively
+          fs.cpSync(baseReportDir, targetRunDir, { recursive: true });
+          
+          // Inject run-specific execution badge into separate report
+          const separateReportFile = path.join(targetRunDir, 'all-in-one-report.html');
+          if (fs.existsSync(separateReportFile)) {
+            let html = fs.readFileSync(separateReportFile, 'utf8');
+            const runBanner = `
+            <div style="background: linear-gradient(90deg, #1e3a8a, #065f46); color: #fff; padding: 12px 20px; font-weight: 600; text-align: center; border-bottom: 2px solid #3b82f6;">
+              🚀 SEPARATE RE-RUN EXECUTION ARCHIVE &bull; Job ID: <code>${jobId}</code> &bull; Scenario: <strong>${scenario.toUpperCase()}</strong> &bull; Executed at: ${new Date().toLocaleString()}
+            </div>
+            `;
+            html = html.replace('<body>', `<body>\n${runBanner}`);
+            fs.writeFileSync(separateReportFile, html, 'utf8');
+          }
+
+          const relativeReportUrl = `runs/${scenario}-${jobId}/all-in-one-report.html`;
+          job.separateReportUrl = relativeReportUrl;
+          currentTestRun.separateReportUrl = relativeReportUrl;
+          addLog(`✓ Separate report generated successfully at: ${relativeReportUrl}`, jobId);
+          saveJobs();
+        }
+      } catch (err) {
+        addLog(`Warning during separate report generation: ${err.message}`, jobId);
+      }
+    });
+  });
+}
+
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   let pathname = decodeURIComponent(parsedUrl.pathname);
@@ -102,18 +228,124 @@ const server = http.createServer(async (req, res) => {
 
   // --- API: Test Execution Status ---
   if (pathname === '/api/test-status') {
+    const jobId = parsedUrl.query.jobId;
+    let targetJob = null;
+    if (jobId) {
+      targetJob = rerunJobs.find(j => j.id === jobId);
+    }
+
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({
       ...currentTestRun,
+      job: targetJob,
       githubRepo: GITHUB_REPO,
       workflowUrl: `https://github.com/${GITHUB_REPO}/actions/workflows/${GITHUB_WORKFLOW}`
     }));
   }
 
-  // --- API: Re-run Test Trigger ---
-  if (pathname === '/api/run-test') {
+  // --- API: Check Pending Jobs Queue (For Antigravity Daemon) ---
+  if (pathname === '/api/pending-jobs') {
+    const pending = rerunJobs.filter(j => j.status === 'queued');
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({
+      count: pending.length,
+      jobs: pending
+    }));
+  }
+
+  // --- API: Claim Job (Antigravity Daemon Claims Execution) ---
+  if (pathname === '/api/claim-job' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      let parsed = {};
+      try { parsed = JSON.parse(body || '{}'); } catch(e) {}
+      const job = rerunJobs.find(j => j.id === parsed.jobId);
+      if (job) {
+        job.status = 'running';
+        job.startedAt = new Date().toISOString();
+        addLog(`[Antigravity Agent] Claimed job ${job.id} for automated execution.`, job.id);
+        saveJobs();
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ success: true, job }));
+      }
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ success: false, error: 'Job not found' }));
+    });
+    return;
+  }
+
+  // --- API: Append Log to Job ---
+  if (pathname === '/api/job-log' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      let parsed = {};
+      try { parsed = JSON.parse(body || '{}'); } catch(e) {}
+      if (parsed.jobId && parsed.log) {
+        addLog(parsed.log, parsed.jobId);
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ success: true }));
+    });
+    return;
+  }
+
+  // --- API: Complete Job ---
+  if (pathname === '/api/complete-job' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      let parsed = {};
+      try { parsed = JSON.parse(body || '{}'); } catch(e) {}
+      const job = rerunJobs.find(j => j.id === parsed.jobId);
+      if (job) {
+        job.status = parsed.status || 'passed';
+        job.completedAt = new Date().toISOString();
+        if (parsed.separateReportUrl) {
+          job.separateReportUrl = parsed.separateReportUrl;
+        }
+        addLog(`[Antigravity Agent] Job ${job.id} completed. Status: ${job.status.toUpperCase()}`, job.id);
+        saveJobs();
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ success: true, job }));
+      }
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ success: false, error: 'Job not found' }));
+    });
+    return;
+  }
+
+  // --- API: Get Job Status by ID ---
+  if (pathname === '/api/job-status') {
+    const jobId = parsedUrl.query.id;
+    const job = rerunJobs.find(j => j.id === jobId);
+    if (job) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ success: true, job }));
+    }
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ success: false, error: 'Job not found' }));
+  }
+
+  // --- API: List All Recent Runs ---
+  if (pathname === '/api/recent-runs') {
+    const scenario = parsedUrl.query.scenario;
+    let filtered = rerunJobs;
+    if (scenario) {
+      filtered = rerunJobs.filter(j => j.scenario === scenario);
+    }
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({
+      total: filtered.length,
+      runs: filtered.slice(0, 30)
+    }));
+  }
+
+  // --- API: Re-run Test Trigger (Queue a Job for Antigravity) ---
+  if (pathname === '/api/run-test' || pathname === '/api/queue-rerun') {
     const handleTrigger = async (scenario, token) => {
-      scenario = scenario || 'scenario-6';
+      scenario = scenario || 'scenario-9';
 
       // 1. If GitHub Token provided, trigger GitHub Actions Cloud runner
       const githubToken = token || process.env.GITHUB_TOKEN;
@@ -141,70 +373,36 @@ const server = http.createServer(async (req, res) => {
         }
       }
 
-      // 2. If running locally with Node & Playwright installed, spawn local test
-      if (currentTestRun.running) {
-        res.writeHead(409, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({
-          success: false,
-          error: `Test '${currentTestRun.scenario}' is already in progress.`
-        }));
+      // 2. Queue Job for Antigravity Automated Engine
+      const jobId = `run_${Date.now()}`;
+      const newJob = {
+        id: jobId,
+        scenario: scenario,
+        status: 'queued',
+        requestedAt: new Date().toISOString(),
+        startedAt: null,
+        completedAt: null,
+        separateReportUrl: null,
+        logs: [`[${new Date().toLocaleTimeString()}] Re-run request queued for ${scenario} (Job ID: ${jobId})`]
+      };
+
+      rerunJobs.unshift(newJob);
+      saveJobs();
+      addLog(`Job ${jobId} placed into Antigravity execution queue for ${scenario}.`, jobId);
+
+      // 3. If running locally with package scripts present, spawn local test immediately
+      const isLocalWithNpm = fs.existsSync(path.join(PUBLIC_DIR, 'package.json'));
+      if (isLocalWithNpm && !currentTestRun.running) {
+        executeLocalTestWithSeparateReport(newJob);
       }
-
-      currentTestRun.running = true;
-      currentTestRun.scenario = scenario;
-      currentTestRun.startTime = new Date().toISOString();
-      currentTestRun.endTime = null;
-      currentTestRun.status = 'running';
-      currentTestRun.logs = [];
-
-      addLog(`⚡ Starting test execution for ${scenario}...`);
-
-      const scriptName = `test:${scenario}`;
-      const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-
-      const child = spawn(npmCmd, ['run', scriptName], {
-        cwd: PUBLIC_DIR,
-        shell: true
-      });
-
-      child.stdout.on('data', (d) => {
-        const text = d.toString().trim();
-        if (text) {
-          text.split('\n').forEach(line => addLog(line.trim()));
-        }
-      });
-
-      child.stderr.on('data', (d) => {
-        const text = d.toString().trim();
-        if (text) {
-          text.split('\n').forEach(line => addLog(`[ERR] ${line.trim()}`));
-        }
-      });
-
-      child.on('close', (code) => {
-        currentTestRun.running = false;
-        currentTestRun.endTime = new Date().toISOString();
-        currentTestRun.status = code === 0 ? 'passed' : 'failed';
-        addLog(`Test process exited with code ${code}. Status: ${currentTestRun.status}`);
-
-        // Regenerate HTML report
-        const reportScript = `report:${scenario}-html`;
-        addLog(`Regenerating report via ${reportScript}...`);
-        const reportChild = spawn(npmCmd, ['run', reportScript], {
-          cwd: PUBLIC_DIR,
-          shell: true
-        });
-        reportChild.on('close', () => {
-          addLog(`Report regeneration complete.`);
-        });
-      });
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({
         success: true,
-        mode: 'local_spawn',
-        scenario,
-        message: `Started test runner for ${scenario}`
+        jobId: jobId,
+        mode: 'antigravity_queue',
+        scenario: scenario,
+        message: `Re-run queued successfully. Antigravity will execute testing and generate a separate report.`
       }));
     };
 
@@ -218,7 +416,6 @@ const server = http.createServer(async (req, res) => {
       });
       return;
     } else {
-      // GET method query support
       const scenario = parsedUrl.query.scenario;
       const token = parsedUrl.query.token;
       return handleTrigger(scenario, token);
@@ -296,5 +493,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🚀 Converze.AI Test Results & Live Runner Server on http://localhost:${PORT}`);
+  console.log(`🚀 Converze.AI Test Results & Antigravity Live Runner Server on http://localhost:${PORT}`);
 });

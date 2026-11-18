@@ -1282,17 +1282,59 @@
 
         <!-- Mode Tabs -->
         <div class="modal-tabs">
-          <button class="modal-tab active" id="tabBtnCloud" onclick="switchTab('cloud')">☁️ Cloud Runner (GitHub Actions)</button>
-          <button class="modal-tab" id="tabBtnLive" onclick="switchTab('live')">⚡ Direct Webhook / API</button>
+          <button class="modal-tab active" id="tabBtnAntigravity" onclick="switchTab('antigravity')">⚡ Antigravity Auto-Runner (Separate Report)</button>
+          <button class="modal-tab" id="tabBtnCloud" onclick="switchTab('cloud')">☁️ Cloud Runner (GitHub Actions)</button>
           <button class="modal-tab" id="tabBtnCli" onclick="switchTab('cli')">💻 Local CLI Command</button>
         </div>
 
-        <!-- TAB 1: Cloud Runner (GitHub Actions) -->
-        <div id="tab-cloud" class="tab-pane active">
+        <!-- TAB 1: Antigravity Automated Runner -->
+        <div id="tab-antigravity" class="tab-pane active">
           <div class="runner-box">
-            <h4>Recommended: Cloud Execution on GitHub Actions</h4>
+            <h4>⚡ Antigravity Automated Test & Separate Report Engine</h4>
             <p>
-              Runs the full test suite in the cloud on GitHub's 16-GB Ubuntu runner with parallel headless Chromium instances. When completed, test reports, videos, and metrics are committed back and Render automatically updates the live portal.
+              Clicking <strong>"Start Antigravity Re-Run Now"</strong> initiates the automated test suite and creates an <strong>isolated, separate report</strong> with continuous video recordings, question audits, and unique archive timestamps.
+            </p>
+            <div style="margin: 1.25rem 0;">
+              <button class="btn btn-primary btn-lg" onclick="triggerAntigravityRerun()" style="background: linear-gradient(135deg, #2563eb, #10b981); border: none; padding: 12px 28px; font-weight: bold; border-radius: 8px; font-size: 1.05rem;">
+                🚀 Start Antigravity Re-Run Now
+              </button>
+            </div>
+            
+            <div class="status-indicator-bar" id="statusBar" style="display: none; align-items: center; gap: 10px; margin-bottom: 12px;">
+              <div class="status-dot" style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; animation: pulse 1.5s infinite;"></div>
+              <span id="statusText" style="font-weight: 600; color: #67e8f9;">Ready to execute</span>
+            </div>
+
+            <!-- SUCCESSFUL SEPARATE REPORT BANNER -->
+            <div id="separateReportContainer" style="display: none; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                <span style="color: #34d399; font-weight: 600;">🎉 Test Execution Completed! Separate Report Created:</span>
+                <a id="separateReportLink" href="#" target="_blank" class="btn btn-sm btn-success" style="font-weight: bold; text-decoration: none; padding: 6px 16px; border-radius: 6px; background-color: #10b981; color: #fff;">
+                  📄 Open Separate Report →
+                </a>
+              </div>
+            </div>
+
+            <div class="terminal-window">
+              <div class="terminal-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-title">Antigravity Execution Console</span>
+              </div>
+              <div class="terminal-body" id="terminalLogs">
+                <div class="log-line text-muted">Ready to execute. Click "Start Antigravity Re-Run Now" to begin.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: Cloud Runner (GitHub Actions) -->
+        <div id="tab-cloud" class="tab-pane">
+          <div class="runner-box">
+            <h4>Cloud Execution on GitHub Actions</h4>
+            <p>
+              Runs the full test suite in the cloud on GitHub's Ubuntu runner with parallel headless Chromium instances. When completed, test reports, videos, and metrics are committed back and Render automatically updates the live portal.
             </p>
             <div style="margin: 1.25rem 0;">
               <a id="ghActionBtn" class="btn btn-github" target="_blank" href="https://github.com/vigneshganesh163-lgtm/converze.ai-Playwright-test-/actions/workflows/run-tests.yml">
@@ -1306,43 +1348,20 @@
           </div>
         </div>
 
-        <!-- TAB 2: Direct Webhook / API -->
-        <div id="tab-live" class="tab-pane">
-          <div class="runner-box">
-            <h4>Trigger Test via Dashboard API</h4>
-            <p>
-              Trigger on-demand execution directly from this portal. Enter an optional GitHub Token to dispatch cloud execution, or run directly if connected to a local runner daemon.
-            </p>
-            <div class="input-row">
-              <input type="password" id="ghTokenInput" class="form-input" placeholder="Optional GitHub Token (PAT) for 1-click cloud dispatch" />
-              <button class="btn btn-primary" onclick="triggerApiRun()">⚡ Trigger Now</button>
-            </div>
-            <div class="status-indicator-bar" id="statusBar" style="display: none;">
-              <div class="status-dot"></div>
-              <span id="statusText">Executing test...</span>
-            </div>
-            <div class="terminal-window">
-              <div class="terminal-bar">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="terminal-title">Runner Console Output</span>
-              </div>
-              <div class="terminal-body" id="terminalLogs">
-                <div class="log-line text-muted">Ready to execute. Click "Trigger Now" or choose Cloud Runner.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- TAB 3: Local CLI Command -->
         <div id="tab-cli" class="tab-pane">
           <div class="runner-box">
             <h4>Run Locally in Terminal</h4>
             <p>To execute locally with live browser windows or screencast capture, run this command:</p>
             <div class="code-block-wrapper">
-              <pre><code id="cliCommandText">npm run test:admin && npm run report:admin-html</code></pre>
+              <pre><code id="cliCommandText">npm run test:scenario-9 && npm run report:scenario-9-html</code></pre>
               <button class="btn-copy" id="copyBtn" onclick="copyCliCommand()">📋 Copy</button>
+            </div>
+            <div class="runner-hint" style="margin-top: 0.75rem;">
+              Make sure dependencies and browsers are installed: <code>npm install && npx playwright install</code>
+            </div>
+          </div>
+        </div>
             </div>
             <div class="runner-hint" style="margin-top: 0.75rem;">
               Make sure dependencies and browsers are installed: <code>npm install && npx playwright install</code>
@@ -1440,12 +1459,14 @@
       document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
 
-      if (tabId === 'cloud') {
+      if (tabId === 'antigravity') {
+        const btn = document.getElementById('tabBtnAntigravity');
+        const pane = document.getElementById('tab-antigravity');
+        if (btn) btn.classList.add('active');
+        if (pane) pane.classList.add('active');
+      } else if (tabId === 'cloud') {
         document.getElementById('tabBtnCloud').classList.add('active');
         document.getElementById('tab-cloud').classList.add('active');
-      } else if (tabId === 'live') {
-        document.getElementById('tabBtnLive').classList.add('active');
-        document.getElementById('tab-live').classList.add('active');
       } else if (tabId === 'cli') {
         document.getElementById('tabBtnCli').classList.add('active');
         document.getElementById('tab-cli').classList.add('active');
@@ -1461,40 +1482,77 @@
       });
     }
 
-    async function triggerApiRun() {
-      const token = document.getElementById('ghTokenInput').value.trim();
+    async function triggerAntigravityRerun() {
+      const scenario = activeScenario;
       const statusBar = document.getElementById('statusBar');
       const statusText = document.getElementById('statusText');
       const terminalLogs = document.getElementById('terminalLogs');
+      const separateReportContainer = document.getElementById('separateReportContainer');
 
+      if (separateReportContainer) separateReportContainer.style.display = 'none';
       statusBar.style.display = 'flex';
-      statusText.textContent = `Triggering test runner for ${activeScenario}...`;
-
-      terminalLogs.innerHTML += `<div class="log-line" style="color: #60a5fa;">[${new Date().toLocaleTimeString()}] ▶ Triggering execution for ${activeScenario}...</div>`;
+      statusText.textContent = `Queueing Antigravity automated test execution for ${scenario}...`;
+      terminalLogs.innerHTML = `<div class="log-line" style="color: #60a5fa;">[${new Date().toLocaleTimeString()}] 🚀 Initiating Antigravity Auto-Runner for ${scenario}...</div>`;
 
       try {
-        const res = await fetch('/api/run-test', {
+        const res = await fetch('/api/queue-rerun', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ scenario: activeScenario, token })
+          body: JSON.stringify({ scenario: scenario, triggeredBy: 'render_portal' })
         });
         const data = await res.json();
-
         if (data.success) {
-          statusText.textContent = `Test initiated: ${data.message}`;
-          terminalLogs.innerHTML += `<div class="log-line" style="color: #34d399;">✓ ${data.message}</div>`;
-          if (data.actionsUrl) {
-            terminalLogs.innerHTML += `<div class="log-line"><a href="${data.actionsUrl}" target="_blank" style="color:#a5b4fc; text-decoration: underline;">View Live GitHub Action Run →</a></div>`;
-          }
-          startLogPolling();
+          const jobId = data.jobId;
+          terminalLogs.innerHTML += `<div class="log-line" style="color: #34d399;">✓ Job Queued successfully (ID: ${jobId}). Antigravity test engine claimed execution.</div>`;
+          statusText.textContent = `Antigravity Runner executing ${scenario}...`;
+          startJobLogPolling(jobId);
         } else {
-          statusText.textContent = `Error: ${data.error || 'Trigger failed'}`;
-          terminalLogs.innerHTML += `<div class="log-line" style="color: #ef4444;">✗ Error: ${data.error || 'Failed to start'}</div>`;
+          statusText.textContent = `Error: ${data.error || 'Failed to queue'}`;
+          terminalLogs.innerHTML += `<div class="log-line" style="color: #ef4444;">✗ Error: ${data.error || 'Queue failed'}</div>`;
         }
       } catch (err) {
-        statusText.textContent = `Connected via GitHub Actions Cloud`;
-        terminalLogs.innerHTML += `<div class="log-line" style="color: #fb923c;">[Notice] For cloud-hosted static deployments, please use the "Cloud Runner (GitHub Actions)" tab to execute.</div>`;
+        statusText.textContent = `Endpoint notice`;
+        terminalLogs.innerHTML += `<div class="log-line" style="color: #fb923c;">[Notice] ${err.message}. If operating on static CDN, please switch to Cloud Runner tab.</div>`;
       }
+    }
+
+    function startJobLogPolling(jobId) {
+      if (pollInterval) clearInterval(pollInterval);
+      pollInterval = setInterval(async () => {
+        try {
+          const res = await fetch(`/api/job-status?id=${jobId}`);
+          const data = await res.json();
+          if (data && data.success && data.job) {
+            const job = data.job;
+            const terminalLogs = document.getElementById('terminalLogs');
+            if (job.logs && job.logs.length) {
+              terminalLogs.innerHTML = job.logs.map(l => `<div class="log-line">${escapeHtml(l)}</div>`).join('');
+              terminalLogs.scrollTop = terminalLogs.scrollHeight;
+            }
+
+            if (job.status === 'passed' || job.status === 'completed') {
+              clearInterval(pollInterval);
+              document.getElementById('statusText').textContent = `✅ Antigravity Test Run Completed Successfully!`;
+              const separateReportContainer = document.getElementById('separateReportContainer');
+              if (separateReportContainer) {
+                separateReportContainer.style.display = 'block';
+                const link = document.getElementById('separateReportLink');
+                if (link && job.separateReportUrl) {
+                  link.href = job.separateReportUrl;
+                  link.textContent = `📄 Open Separate Report (${job.id}) →`;
+                }
+              }
+            } else if (job.status === 'failed') {
+              clearInterval(pollInterval);
+              document.getElementById('statusText').textContent = `❌ Test run failed with errors.`;
+            }
+          }
+        } catch (e) {}
+      }, 2000);
+    }
+
+    async function triggerApiRun() {
+      return triggerAntigravityRerun();
     }
 
     function startLogPolling() {

@@ -6,15 +6,15 @@ on:
       scenario:
         description: 'Select Scenario to Re-Run'
         required: true
-        default: 'admin'
+        default: 'scenario-9'
         type: choice
         options:
-          - 'admin'
-          - 'scenario-2'
-          - 'scenario-3'
-          - 'scenario-4'
+          - 'scenario-9'
+          - 'scenario-7'
           - 'scenario-5'
-          - 'scenario-6'
+          - 'scenario-4'
+          - 'scenario-3'
+          - 'admin'
   repository_dispatch:
     types: [rerun-test]
 
