@@ -7,6 +7,8 @@ const { spawn } = require('child_process');
 
 const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = __dirname;
+const WORKSPACE_DIR = path.resolve(__dirname, '../Converze.ai -playwright test new');
+const EXECUTION_DIR = fs.existsSync(path.join(WORKSPACE_DIR, 'node_modules')) ? WORKSPACE_DIR : PUBLIC_DIR;
 const GITHUB_REPO = 'vigneshganesh163-lgtm/converze.ai-Playwright-test-';
 const GITHUB_WORKFLOW = 'run-tests.yml';
 const JOBS_FILE = path.join(PUBLIC_DIR, 'rerun-jobs.json');
@@ -139,7 +141,7 @@ function executeLocalTestWithSeparateReport(job) {
   const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
   const child = spawn(npmCmd, ['run', scriptName], {
-    cwd: PUBLIC_DIR,
+    cwd: EXECUTION_DIR,
     shell: true
   });
 
@@ -170,33 +172,38 @@ function executeLocalTestWithSeparateReport(job) {
     const reportScript = `report:${scenario}-html`;
     addLog(`Compiling HTML report via ${reportScript}...`, jobId);
     const reportChild = spawn(npmCmd, ['run', reportScript], {
-      cwd: PUBLIC_DIR,
+      cwd: EXECUTION_DIR,
       shell: true
     });
 
     reportChild.on('close', () => {
       try {
         // Create an isolated, separate report directory for this specific run
-        const baseReportDir = path.join(PUBLIC_DIR, `${scenario}-report`);
+        const baseReportDir = path.join(EXECUTION_DIR, `${scenario}-report`);
         const separateRunsDir = path.join(PUBLIC_DIR, 'runs');
+        const workspaceRunsDir = path.join(EXECUTION_DIR, 'runs');
         if (!fs.existsSync(separateRunsDir)) fs.mkdirSync(separateRunsDir, { recursive: true });
+        if (!fs.existsSync(workspaceRunsDir)) fs.mkdirSync(workspaceRunsDir, { recursive: true });
 
         const targetRunDir = path.join(separateRunsDir, `${scenario}-${jobId}`);
+        const targetWorkspaceRunDir = path.join(workspaceRunsDir, `${scenario}-${jobId}`);
         if (fs.existsSync(baseReportDir)) {
           // Copy directory recursively
           fs.cpSync(baseReportDir, targetRunDir, { recursive: true });
+          fs.cpSync(baseReportDir, targetWorkspaceRunDir, { recursive: true });
           
           // Inject run-specific execution badge into separate report
           const separateReportFile = path.join(targetRunDir, 'all-in-one-report.html');
           if (fs.existsSync(separateReportFile)) {
             let html = fs.readFileSync(separateReportFile, 'utf8');
             const runBanner = `
-            <div style="background: linear-gradient(90deg, #1e3a8a, #065f46); color: #fff; padding: 12px 20px; font-weight: 600; text-align: center; border-bottom: 2px solid #3b82f6;">
+            <div style="background: linear-gradient(90deg, #1e3a8a, #065f46); color: #fff; padding: 14px 24px; font-weight: 600; text-align: center; border-bottom: 2px solid #10b981;">
               🚀 SEPARATE RE-RUN EXECUTION ARCHIVE &bull; Job ID: <code>${jobId}</code> &bull; Scenario: <strong>${scenario.toUpperCase()}</strong> &bull; Executed at: ${new Date().toLocaleString()}
             </div>
             `;
             html = html.replace('<body>', `<body>\n${runBanner}`);
             fs.writeFileSync(separateReportFile, html, 'utf8');
+            fs.writeFileSync(path.join(targetWorkspaceRunDir, 'all-in-one-report.html'), html, 'utf8');
           }
 
           const relativeReportUrl = `runs/${scenario}-${jobId}/all-in-one-report.html`;
@@ -204,6 +211,18 @@ function executeLocalTestWithSeparateReport(job) {
           currentTestRun.separateReportUrl = relativeReportUrl;
           addLog(`✓ Separate report generated successfully at: ${relativeReportUrl}`, jobId);
           saveJobs();
+
+          // Push to GitHub so Render updates
+          try {
+            const { execSync } = require('child_process');
+            execSync('git add -A && git commit -m "feat(rerun): add separate report for ' + jobId + '" && git push origin main', {
+              cwd: PUBLIC_DIR,
+              stdio: 'pipe'
+            });
+            addLog(`✓ Pushed separate report to GitHub (Render auto-deploy triggered).`, jobId);
+          } catch(e) {
+            addLog(`Git sync notice: ${e.message}`, jobId);
+          }
         }
       } catch (err) {
         addLog(`Warning during separate report generation: ${err.message}`, jobId);
@@ -219,7 +238,8 @@ const server = http.createServer(async (req, res) => {
   // Set CORS headers for API requests
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, *');
+  res.setHeader('Access-Control-Allow-Private-Network', 'true');
 
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
