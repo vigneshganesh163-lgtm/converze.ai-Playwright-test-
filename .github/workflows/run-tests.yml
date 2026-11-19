@@ -62,6 +62,19 @@ jobs:
           echo "==> Re-generating HTML report for $SCENARIO..."
           npm run "report:$SCENARIO-html" || true
 
+      - name: Create Separate Isolated Run Report Archive
+        if: always()
+        run: |
+          SCENARIO="${{ steps.target.outputs.selected_scenario }}"
+          RUN_ID="run_$(date +%s)"
+          TARGET_DIR="runs/${SCENARIO}-${RUN_ID}"
+          echo "==> Creating separate report in ${TARGET_DIR}..."
+          mkdir -p "runs"
+          if [ -d "${SCENARIO}-report" ]; then
+            cp -r "${SCENARIO}-report" "${TARGET_DIR}"
+            echo "==> Injected separate report archive ${TARGET_DIR}"
+          fi
+
       - name: Commit & Push Updated Test Results
         if: always()
         run: |

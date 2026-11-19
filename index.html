@@ -1491,36 +1491,93 @@
 
       if (separateReportContainer) separateReportContainer.style.display = 'none';
       statusBar.style.display = 'flex';
-      statusText.textContent = `Queueing Antigravity automated test execution for ${scenario}...`;
-      terminalLogs.innerHTML = `<div class="log-line" style="color: #60a5fa;">[${new Date().toLocaleTimeString()}] 🚀 Initiating Antigravity Auto-Runner for ${scenario}...</div>`;
+      statusText.textContent = `Queueing automated test execution for ${scenario}...`;
+      terminalLogs.innerHTML = `<div class="log-line" style="color: #60a5fa;">[${new Date().toLocaleTimeString()}] 🚀 Initiating automated test runner for ${scenario}...</div>`;
 
+      let queued = false;
+
+      // Attempt 1: Call relative backend API (/api/queue-rerun)
       try {
         const res = await fetch('/api/queue-rerun', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ scenario: scenario, triggeredBy: 'render_portal' })
         });
-        const data = await res.json();
-        if (data.success) {
-          const jobId = data.jobId;
-          terminalLogs.innerHTML += `<div class="log-line" style="color: #34d399;">✓ Job Queued successfully (ID: ${jobId}). Antigravity test engine claimed execution.</div>`;
-          statusText.textContent = `Antigravity Runner executing ${scenario}...`;
-          startJobLogPolling(jobId);
-        } else {
-          statusText.textContent = `Error: ${data.error || 'Failed to queue'}`;
-          terminalLogs.innerHTML += `<div class="log-line" style="color: #ef4444;">✗ Error: ${data.error || 'Queue failed'}</div>`;
+        if (res.ok) {
+          const contentType = res.headers.get('content-type') || '';
+          if (contentType.includes('application/json')) {
+            const data = await res.json();
+            if (data && data.success) {
+              queued = true;
+              const jobId = data.jobId;
+              terminalLogs.innerHTML += `<div class="log-line" style="color: #34d399;">✓ Job queued successfully (ID: ${jobId}). Antigravity test engine claimed execution.</div>`;
+              statusText.textContent = `Antigravity Runner executing ${scenario}...`;
+              startJobLogPolling(jobId);
+              return;
+            }
+          }
         }
-      } catch (err) {
-        statusText.textContent = `Endpoint notice`;
-        terminalLogs.innerHTML += `<div class="log-line" style="color: #fb923c;">[Notice] ${err.message}. If operating on static CDN, please switch to Cloud Runner tab.</div>`;
+      } catch (e) {
+        // Fallback to local bridge or cloud runner
       }
+
+      // Attempt 2: Try local Antigravity Daemon bridge at http://localhost:3000
+      if (!queued) {
+        try {
+          const localRes = await fetch('http://localhost:3000/api/queue-rerun', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ scenario: scenario, triggeredBy: 'render_portal' })
+          });
+          if (localRes.ok) {
+            const localData = await localRes.json();
+            if (localData && localData.success) {
+              queued = true;
+              const jobId = localData.jobId;
+              terminalLogs.innerHTML += `<div class="log-line" style="color: #34d399;">✓ Connected to local Antigravity daemon (ID: ${jobId}). Execution started.</div>`;
+              statusText.textContent = `Local Antigravity Runner active on ${scenario}...`;
+              startJobLogPolling(jobId, 'http://localhost:3000');
+              return;
+            }
+          }
+        } catch (localErr) {
+          // Local server not running or blocked by browser mixed content
+        }
+      }
+
+      // If on Static CDN / Render Static Site without active Node backend:
+      statusText.textContent = `Render Static CDN Detected (Use Cloud Runner)`;
+      terminalLogs.innerHTML += `
+        <div class="log-line" style="color: #fb923c; margin-top: 6px;">
+          ⚠️ <strong>Static CDN Deployment Detected:</strong> This Render site is hosted as a Static Site (no live Node.js process).
+        </div>
+        <div class="log-line" style="color: #e2e8f0; margin-top: 8px;">
+          To run on-demand testing and auto-publish a separate report, choose one of these instant options:
+        </div>
+        <div class="log-line" style="margin-top: 10px; padding: 10px 14px; background: rgba(59, 130, 246, 0.15); border: 1px solid #3b82f6; border-radius: 6px;">
+          <div style="font-weight: bold; color: #60a5fa; margin-bottom: 4px;">Option 1: 1-Click Cloud Runner (Recommended)</div>
+          <div style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 8px;">Runs Playwright on GitHub's 16GB runner, records all videos, and automatically updates Render with a separate report.</div>
+          <a href="https://github.com/vigneshganesh163-lgtm/converze.ai-Playwright-test-/actions/workflows/run-tests.yml" target="_blank" class="btn btn-sm btn-primary" style="background:#2563eb; color:#fff; text-decoration:none; padding:6px 14px; border-radius:4px; font-weight:bold; display:inline-block;">
+            🚀 Open GitHub Actions Cloud Runner →
+          </a>
+        </div>
+        <div class="log-line" style="margin-top: 10px; padding: 10px 14px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 6px;">
+          <div style="font-weight: bold; color: #34d399; margin-bottom: 4px;">Option 2: Local CLI Execution</div>
+          <div style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 4px;">Run directly in your terminal to view live browser windows:</div>
+          <code style="color: #38bdf8; background: rgba(0,0,0,0.4); padding: 4px 8px; border-radius: 4px; display: inline-block;">npm run test:${scenario} && npm run report:${scenario}-html</code>
+        </div>
+        <div class="log-line" style="color: #94a3b8; font-size: 0.78rem; margin-top: 8px;">
+          💡 <em>To enable direct 1-click execution on Render, switch your Render service from "Static Site" to "Web Service" (Command: <code>node server.js</code>).</em>
+        </div>
+      `;
     }
 
-    function startJobLogPolling(jobId) {
+    function startJobLogPolling(jobId, baseUrl = '') {
       if (pollInterval) clearInterval(pollInterval);
       pollInterval = setInterval(async () => {
         try {
-          const res = await fetch(`/api/job-status?id=${jobId}`);
+          const res = await fetch(`${baseUrl}/api/job-status?id=${jobId}`);
+          if (!res.ok) return;
           const data = await res.json();
           if (data && data.success && data.job) {
             const job = data.job;
